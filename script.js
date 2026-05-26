@@ -1,4 +1,3 @@
- 
 $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", function () {
   $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js", function () {
     $.getScript("https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js", function () {
@@ -13,7 +12,7 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
           orientation       : "vertical",
           gestureOrientation: "vertical",
           smoothWheel       : true,
-          smoothTouch       : false,
+          smoothTouch       : true,
           touchMultiplier   : 2,
           wheelMultiplier   : 1,
           infinite          : false,
@@ -61,37 +60,18 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
 
         const heroImg = document.querySelector(".headerImg img");
 
-/* FORCE visible immediately */
-heroImg.style.opacity = "1";
-heroImg.style.visibility = "visible";
-heroImg.style.display = "block";
-heroImg.style.transform = "translate3d(0,0,0)";
-heroImg.style.willChange = "transform, opacity";
-
         // Wipe conflicting CSS transforms so getBoundingClientRect()
         // returns the real layout position (no CSS rotate/scale offset)
-        // heroImg.style.transform = "none";
-        // heroImg.style.transformOrigin = "center center";
+        heroImg.style.transform       = "none";
+        heroImg.style.transformOrigin = "center center";
 
-/* IMPORTANT */
-gsap.set(heroImg, {
-  opacity: 1,
-  visibility: "visible",
-  y: 0,
-  scale: 1,
-   rotate: isMobile() ? 0 : -15,
-   bottom: isSmMobile() ? 25 : 0
-
-});
-
-/* entrance animation */
-gsap.from(heroImg, {
-  y: 70,
-  opacity: 0,
-  duration: 1.3,
-  ease: "power3.out",
-  delay: 0.25
-});
+        // Explicitly set the FROM state, then animate TO visible
+        gsap.set(heroImg, { y: 70, opacity: 0, scale: 1 , rotate: isMobile() ? 0 : -15,
+   bottom: isSmMobile() ? 25 : 0});
+        gsap.to(heroImg, {
+          y: 0, opacity: 1, scale: 1,
+          duration: 1.3, ease: "power3.out", delay: 0.15,
+        });
 
         /* Arrow + Button entrance */
         gsap.set([".headerSection .arrowImg", ".headerContent .orderBtn"], { opacity: 0 });
@@ -173,173 +153,160 @@ gsap.from(heroImg, {
            ─ Fly fades out in sync with step-icon-wrap img fade-in.
         ══════════════════════════════════════════════════════ */
 
-        const cards   = document.querySelectorAll(".step-card");
-        const card1   = cards[0];
-        // Target: the food image inside the first step-card icon
-        const cardImg = card1.querySelector(".step-icon-wrap img");
+        const cards       = document.querySelectorAll(".step-card");
+        const card1       = cards[0];
+        const cardImgWrap = card1.querySelector(".step-icon-wrap");        // target: circle container
+        const cardImg     = card1.querySelector(".step-icon-wrap img");    // for fade animation
 
         /* Clone */
         const flyImg  = heroImg.cloneNode(true);
         flyImg.removeAttribute("loading");
         flyImg.style.cssText = [
-           "position:fixed",
-  "top:0",
-  "left:0",
-  "width:0px",
-  "height:0px",
-  "margin:0",
-  "padding:0",
-  "pointer-events:none",
-  "z-index:9999",
-  "object-fit:contain",
-  "opacity:0",
-  "visibility:hidden",
-  "display:block",
-  "transform:translate3d(0,0,0)",
-  "backface-visibility:hidden",
-  "will-change:transform,opacity",
-  "border-radius:0px"
+          "position:fixed",
+          "top:0", "left:0",
+          "width:0px", "height:0px",
+          "margin:0", "padding:0",
+          "pointer-events:none",
+          "z-index:9999",
+          "object-fit:contain",
+          "opacity:0",
+          "visibility:hidden",
+          "transform:none",
+          "transform-origin:top left",
+          "will-change:left,top,width,height,opacity",
+          "border-radius:0px",
+          "transition:none",
         ].join(";");
         document.body.appendChild(flyImg);
 
-        /* Hide step-icon-wrap img until fly arrives */
         gsap.set(cardImg, { opacity: 0, scale: 0.82, transformOrigin: "center center" });
 
         const lerp = (a, b, t) => a + (b - a) * t;
-
-        let heroSnapRect  = null;   // locked when flight starts
+        let heroSnapRect  = null;
         let flyingActive  = false;
 
-        /* Helper: apply styles directly for GPU-friendly layout changes */
         function positionFly(left, top, w, h, radius, opacity) {
-         flyImg.style.transform = `
-translate3d(${left}px, ${top}px, 0)
-`;
-          flyImg.style.width        = w      + "px";
-          flyImg.style.height       = h      + "px";
+          // CLAMP: never let the fly go above viewport (top = 0 minimum)
+          const clampedTop = Math.max(0, top);
+          
+          flyImg.style.left         = left + "px";
+          flyImg.style.top          = clampedTop + "px";
+          flyImg.style.width        = Math.max(0, w) + "px";
+          flyImg.style.height       = Math.max(0, h) + "px";
           flyImg.style.borderRadius = radius + "px";
           flyImg.style.opacity      = opacity;
         }
 
+        // Trigger earlier: watch for hero section leaving, OR payment entering
+        // This ensures we capture hero BEFORE it scrolls off on mobile
+        let heroMeasured = false;
+
+        // Measure hero position as soon as hero image is fully loaded
+        function measureHeroNow() {
+          if (!heroMeasured && heroImg.complete) {
+            heroSnapRect = heroImg.getBoundingClientRect();
+            heroMeasured = true;
+          }
+        }
+        
+        // Try measuring immediately if image is already loaded
+        if (heroImg.complete) {
+          gsap.delayedCall(0.5, measureHeroNow);  // after entrance animation settles
+        } else {
+          heroImg.addEventListener("load", () => {
+            gsap.delayedCall(0.5, measureHeroNow);
+          });
+        }
+
         ScrollTrigger.create({
-          trigger : ".paymentSection", 
+          trigger : ".headerSection",
+          start   : "top 85%",   // fires when header bottom is near top of viewport
+          onEnter() {
+            if (!heroMeasured) {
+              heroSnapRect = heroImg.getBoundingClientRect();
+              heroMeasured = true;
+            }
+          },
+          onLeaveBack() {
+            heroMeasured = false;
+            heroSnapRect = null;
+          },
+        });
 
-           start : isMobile() ? "top 82%" : "top 72%",
-  end   : isMobile() ? "top 5%" : "top -10%",
-          scrub   : 2,
+        ScrollTrigger.create({
+          trigger : ".paymentSection",
+          start   : "top 70%",      // consistent across mobile/desktop
+          end     : "top 10%",
+          scrub   : 1,           // faster response
 
-onEnter() {
+          onEnter() {
+            // If hero wasn't measured yet (shouldn't happen, but safety fallback)
+            if (!heroSnapRect) {
+              heroSnapRect = heroImg.getBoundingClientRect();
+            }
+            
+            flyingActive = true;
 
-  heroSnapRect = heroImg.getBoundingClientRect();
-  flyingActive = true;
+            /* Show clone at clamped position */
+            const clampedTop = Math.max(0, heroSnapRect.top);
+            positionFly(
+              heroSnapRect.left, clampedTop,
+              heroSnapRect.width, heroSnapRect.height,
+              0, "1"
+            );
+            flyImg.style.visibility = "visible";
 
-   positionFly(
-    heroSnapRect.left,
-    heroSnapRect.top,
-    heroSnapRect.width,
-    heroSnapRect.height,
-    0,
-    0
-  );
-
-  flyImg.style.visibility = "visible";
-
-   /* keep original visible initially */
-  heroImg.style.opacity = "1";
-},
+            /* Hide original */
+            heroImg.style.opacity    = "0";
+            heroImg.style.visibility = "hidden";
+          },
 
           onLeaveBack() {
             flyingActive = false;
 
-            /* Restore original, hide clone */
             heroImg.style.opacity    = "1";
             heroImg.style.visibility = "visible";
-            flyImg.style.opacity     = "1";
-            flyImg.style.visibility  = "visible";
+            flyImg.style.opacity     = "0";
+            flyImg.style.visibility  = "hidden";
 
-            /* Reset step-card image */
             gsap.set(cardImg, { opacity: 0, scale: 0.82 });
           },
-onUpdate(self) {
 
-  heroImg.style.opacity = "0";
-heroImg.style.visibility = "hidden";
+          onUpdate(self) {
+            if (!flyingActive || !heroSnapRect) return;
 
-  if (!flyingActive || !heroSnapRect) return;
+            const p  = self.progress;
+            const ep = gsap.parseEase("power2.inOut")(p);
 
-  const raw = self.progress;
+            // Measure the .step-icon-wrap container, NOT card1 or the image inside
+            const cr = cardImgWrap.getBoundingClientRect();
+            const hr = heroSnapRect;
 
-  /* movement starts later */
-  const moveStart = 0.12;
+            // Clamp hero top so fly never goes above viewport
+            const clampedHeroTop = Math.max(0, hr.top);
 
-  /* movement ends before trigger end */
-  const moveEnd = 0.92;
+            const revealStart = 0.2;
+            const reveal      = ep > revealStart
+              ? gsap.utils.clamp(0, 1, (ep - revealStart) / (1 - revealStart))
+              : 0;
 
-  /* before movement */
-  if (raw <= moveStart) {
+            const flyOpacity = ep > 0.97 ? 0 : (1 - reveal);
 
-  /* show original */
-  heroImg.style.opacity = "1";
-  heroImg.style.visibility = "visible";
+            // Interpolate from hero to circle container (step-icon-wrap is 50% border-radius)
+            positionFly(
+              lerp(hr.left,        cr.left,   ep),
+              lerp(clampedHeroTop, cr.top,    ep),
+              lerp(hr.width,       cr.width,  ep),
+              lerp(hr.height,      cr.height, ep),
+              lerp(0, 50, ep),   // lerp to 50% for circular container
+              flyOpacity.toFixed(3)
+            );
 
-  /* fully hide clone */
-  flyImg.style.opacity = "0";
-  flyImg.style.visibility = "hidden";
-  flyImg.style.transform = "translate3d(-9999px,-9999px,0)";
-
-  return;
-}
-
-  /* normalized progress */
-  const moveProgress = gsap.utils.clamp(
-    0,
-    1,
-    (raw - moveStart) / (moveEnd - moveStart)
-  );
-
-  /* MUCH smoother easing */
-  const ep = gsap.parseEase("expo.inOut")(moveProgress);
-
-  /* hide original */
-  heroImg.style.opacity = "0";
-
-  const cr = cardImg.getBoundingClientRect();
-  const hr = heroSnapRect;
-
-  /* reveal fly */
-  flyImg.style.opacity = "1";
-  flyImg.style.visibility = "visible";
-
-  /* smooth movement */
-  positionFly(
-    gsap.utils.interpolate(hr.left, cr.left, ep),
-    gsap.utils.interpolate(hr.top, cr.top, ep),
-    gsap.utils.interpolate(hr.width, cr.width, ep),
-    gsap.utils.interpolate(hr.height, cr.height, ep),
-    gsap.utils.interpolate(0, 14, ep),
-    1
-  );
-
-  /* reveal card image only near end */
-  const revealStart = 0.78;
-
-  const reveal =
-    moveProgress > revealStart
-      ? gsap.utils.clamp(
-          0,
-          1,
-          (moveProgress - revealStart) / (1 - revealStart)
-        )
-      : 0;
-
-  flyImg.style.opacity = 1 - reveal;
-
-  gsap.set(cardImg, {
-    opacity: reveal,
-    scale: gsap.utils.interpolate(0.82, 1, reveal)
-  });
-}
-
+            gsap.set(cardImg, {
+              opacity: reveal,
+              scale  : gsap.utils.interpolate(0.82, 1, reveal),
+            });
+          },
         });
 
         /* ══════════════════════════════════════════════════════
@@ -491,4 +458,3 @@ heroImg.style.visibility = "hidden";
     }); // lenis
   }); // ScrollTrigger
 }); // gsap
- 
