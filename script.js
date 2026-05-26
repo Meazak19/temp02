@@ -237,7 +237,7 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
           trigger : ".paymentSection",
           start   : "top 70%",      // consistent across mobile/desktop
           end     : "top 10%",
-          scrub   : 1,           // faster response
+          scrub   : 0.6,           // faster response
 
           onEnter() {
             // If hero wasn't measured yet (shouldn't happen, but safety fallback)
@@ -280,10 +280,18 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
 
             // Measure the .step-icon-wrap container, NOT card1 or the image inside
             const cr = cardImgWrap.getBoundingClientRect();
-            const hr = heroSnapRect;
+     // Use live hero rect while scrolling back up
+const liveHeroRect = heroImg.getBoundingClientRect();
 
-            // Clamp hero top so fly never goes above viewport
-            const clampedHeroTop = Math.max(0, hr.top);
+const hr = {
+  left: liveHeroRect.left,
+  top: liveHeroRect.top,
+  width: heroSnapRect.width,
+  height: heroSnapRect.height,
+};
+
+// Clamp hero top so fly never goes above viewport
+const clampedHeroTop = Math.max(0, hr.top);
 
             const revealStart = 0.2;
             const reveal      = ep > revealStart
