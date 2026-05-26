@@ -185,14 +185,17 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
         let heroSnapRect  = null;
         let flyingActive  = false;
 
-       function positionFly(left, top, w, h, radius, opacity) {
-  flyImg.style.left         = left + "px";
-  flyImg.style.top          = top + "px";
-  flyImg.style.width        = Math.max(0, w) + "px";
-  flyImg.style.height       = Math.max(0, h) + "px";
-  flyImg.style.borderRadius = radius + "px";
-  flyImg.style.opacity      = opacity;
-}
+        function positionFly(left, top, w, h, radius, opacity) {
+          // CLAMP: never let the fly go above viewport (top = 0 minimum)
+          const clampedTop = Math.max(0, top);
+          
+          flyImg.style.left         = left + "px";
+          flyImg.style.top          = clampedTop + "px";
+          flyImg.style.width        = Math.max(0, w) + "px";
+          flyImg.style.height       = Math.max(0, h) + "px";
+          flyImg.style.borderRadius = radius + "px";
+          flyImg.style.opacity      = opacity;
+        }
 
         // Trigger earlier: watch for hero section leaving, OR payment entering
         // This ensures we capture hero BEFORE it scrolls off on mobile
@@ -232,9 +235,9 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
 
         ScrollTrigger.create({
           trigger : ".paymentSection",
-        start: isMobile() ? "top 92%" : "top 70%",
-end: isMobile() ? "top 20%" : "top 10%",
-          scrub   : 0.6,           // faster response
+          start   : "top 70%",      // consistent across mobile/desktop
+          end     : "top 10%",
+          scrub   : 1,           // faster response
 
           onEnter() {
             // If hero wasn't measured yet (shouldn't happen, but safety fallback)
@@ -277,20 +280,12 @@ end: isMobile() ? "top 20%" : "top 10%",
 
             // Measure the .step-icon-wrap container, NOT card1 or the image inside
             const cr = cardImgWrap.getBoundingClientRect();
-     // Use live hero rect while scrolling back up
-const liveHeroRect = heroImg.getBoundingClientRect();
+            const hr = heroSnapRect;
 
-const hr = {
-  left: liveHeroRect.left,
-  top: liveHeroRect.top,
-  width: heroSnapRect.width,
-  height: heroSnapRect.height,
-};
+            // Clamp hero top so fly never goes above viewport
+            const clampedHeroTop = Math.max(0, hr.top);
 
-// Clamp hero top so fly never goes above viewport
-// const clampedHeroTop = Math.max(0, hr.top);
-
-            const revealStart = 0.2;
+            const revealStart = 0.72;
             const reveal      = ep > revealStart
               ? gsap.utils.clamp(0, 1, (ep - revealStart) / (1 - revealStart))
               : 0;
@@ -298,21 +293,14 @@ const hr = {
             const flyOpacity = ep > 0.97 ? 0 : (1 - reveal);
 
             // Interpolate from hero to circle container (step-icon-wrap is 50% border-radius)
-          let targetLeft = cr.left;
-let targetTop  = cr.top;
-
-if (isMobile()) {
-  targetLeft = (window.innerWidth / 2) - (cr.width / 2);
-}
-
-positionFly(
-  lerp(hr.left,   targetLeft, ep),
-  lerp(hr.top,    targetTop,  ep),
-  lerp(hr.width,  cr.width,   ep),
-  lerp(hr.height, cr.height,  ep),
-  lerp(0, 50, ep),
-  flyOpacity.toFixed(3)
-);
+            positionFly(
+              lerp(hr.left,        cr.left,   ep),
+              lerp(clampedHeroTop, cr.top,    ep),
+              lerp(hr.width,       cr.width,  ep),
+              lerp(hr.height,      cr.height, ep),
+              lerp(0, 50, ep),   // lerp to 50% for circular container
+              flyOpacity.toFixed(3)
+            );
 
             gsap.set(cardImg, {
               opacity: reveal,
