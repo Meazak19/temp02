@@ -47,6 +47,7 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
         window.lenisStart = () => lenis.start();
 
         const TOGGLE   = "play none none reverse";
+        const isFirstMobile = () => window.innerWidth < 991;
         const isMobile = () => window.innerWidth < 768;
         const isSmMobile = () => window.innerWidth < 576;
 
@@ -63,7 +64,7 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
         // Wipe conflicting CSS transforms so getBoundingClientRect()
         // returns the real layout position (no CSS rotate/scale offset)
         heroImg.style.transform       = "none";
-        heroImg.style.transformOrigin = "center center";
+        heroImg.style.transformOrigin = "bottom left";
 
         // Explicitly set the FROM state, then animate TO visible
         gsap.set(heroImg, { y: 70, opacity: 0, scale: 1 , rotate: isMobile() ? 0 : -15,
@@ -152,162 +153,142 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
              the card's real viewport position while scrolling.
            ─ Fly fades out in sync with step-icon-wrap img fade-in.
         ══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════
+   FLYING IMAGE — fixed version
+   Bugs fixed:
+   1. Missing onLeave → fly persisted into About section
+   2. heroSnapRect measured too early (0.5s < 1.45s anim)
+   3. Math.max(0,top) clamp caused wrong start pos on mobile
+   4. Mobile bypass: if hero is off-screen, reveal directly
+══════════════════════════════════════════════════════ */
 
-        const cards       = document.querySelectorAll(".step-card");
-        const card1       = cards[0];
-        const cardImgWrap = card1.querySelector(".step-icon-wrap");        // target: circle container
-        const cardImg     = card1.querySelector(".step-icon-wrap img");    // for fade animation
+const cards       = document.querySelectorAll(".step-card");
+const card1       = cards[0];
+const cardImgWrap = card1.querySelector(".step-icon-wrap");
+const cardImg     = card1.querySelector(".step-icon-wrap img");
 
-        /* Clone */
-        const flyImg  = heroImg.cloneNode(true);
-        flyImg.removeAttribute("loading");
-        flyImg.style.cssText = [
-          "position:fixed",
-          "top:0", "left:0",
-          "width:0px", "height:0px",
-          "margin:0", "padding:0",
-          "pointer-events:none",
-          "z-index:9999",
-          "object-fit:contain",
-          "opacity:0",
-          "visibility:hidden",
-          "transform:none",
-          "transform-origin:top left",
-          "will-change:left,top,width,height,opacity",
-          "border-radius:0px",
-          "transition:none",
-        ].join(";");
-        document.body.appendChild(flyImg);
-
-        gsap.set(cardImg, { opacity: 0, scale: 0.82, transformOrigin: "center center" });
-
-        const lerp = (a, b, t) => a + (b - a) * t;
-        let heroSnapRect  = null;
-        let flyingActive  = false;
-
-        function positionFly(left, top, w, h, radius, opacity) {
-          // CLAMP: never let the fly go above viewport (top = 0 minimum)
-          const clampedTop = Math.max(0, top);
-          
-          flyImg.style.left         = left + "px";
-          flyImg.style.top          = clampedTop + "px";
-          flyImg.style.width        = Math.max(0, w) + "px";
-          flyImg.style.height       = Math.max(0, h) + "px";
-          flyImg.style.borderRadius = radius + "px";
-          flyImg.style.opacity      = opacity;
-        }
-
-        // Trigger earlier: watch for hero section leaving, OR payment entering
-        // This ensures we capture hero BEFORE it scrolls off on mobile
-        let heroMeasured = false;
-
-        // Measure hero position as soon as hero image is fully loaded
-        function measureHeroNow() {
-          if (!heroMeasured && heroImg.complete) {
-            heroSnapRect = heroImg.getBoundingClientRect();
-            heroMeasured = true;
-          }
-        }
-        
-        // Try measuring immediately if image is already loaded
-        if (heroImg.complete) {
-          gsap.delayedCall(0.5, measureHeroNow);  // after entrance animation settles
-        } else {
-          heroImg.addEventListener("load", () => {
-            gsap.delayedCall(0.5, measureHeroNow);
+  const flyImg = heroImg.cloneNode(true);
+          Object.assign(flyImg.style, {
+            position      : "fixed",
+            top           : "0",
+            left          : "0",
+            margin        : "0",
+            pointerEvents : "none",
+            zIndex        : "9998",
+            transformOrigin: "top left",
+            willChange    : "transform, width, height, opacity",
+            objectFit     : "contain",
+            borderRadius  : "0px",
+            opacity       : "0",
           });
-        }
+          document.body.appendChild(flyImg);
+  
+          let heroRect = heroImg.getBoundingClientRect();
+          window.addEventListener("resize", () => {
+            setTimeout(() => { heroRect = heroImg.getBoundingClientRect(); }, 260);
+          });
+  
+    ScrollTrigger.create({
+  trigger : ".paymentSection",
+  // start: isMobile() ? "top 52%" : "top 96%",
+  start: isFirstMobile() ? "top 52%" : "top 96%",
+    end   : isFirstMobile() ? "top 10%" : "top 35%",
+    scrub : isFirstMobile() ? 0.5 : 1.5,
+  // start   : "top 96%",
+  // end     : "top 35%",
+  // scrub   : 1.5,
 
-        ScrollTrigger.create({
-          trigger : ".headerSection",
-          start   : "top 85%",   // fires when header bottom is near top of viewport
-          onEnter() {
-            if (!heroMeasured) {
-              heroSnapRect = heroImg.getBoundingClientRect();
-              heroMeasured = true;
-            }
-          },
-          onLeaveBack() {
-            heroMeasured = false;
-            heroSnapRect = null;
-          },
-        });
+  onEnter() { 
+    const hr = heroImg.getBoundingClientRect();
+    gsap.set(flyImg, {
+      x: hr.left, y: hr.top,
+      width: hr.width, height: hr.height,
+      opacity: 1, scale: 1.2, borderRadius: "0px",
+    });
+  },
 
-        ScrollTrigger.create({
-          trigger : ".paymentSection",
-          start   : "top 70%",      // consistent across mobile/desktop
-          end     : "top 10%",
-          scrub   : 1,           // faster response
+ 
 
-          onEnter() {
-            // If hero wasn't measured yet (shouldn't happen, but safety fallback)
-            if (!heroSnapRect) {
-              heroSnapRect = heroImg.getBoundingClientRect();
-            }
-            
-            flyingActive = true;
+  onUpdate(self) {
+    const p  = self.progress;
+    const ep = gsap.parseEase("power2.inOut")(p);
 
-            /* Show clone at clamped position */
-            const clampedTop = Math.max(0, heroSnapRect.top);
-            positionFly(
-              heroSnapRect.left, clampedTop,
-              heroSnapRect.width, heroSnapRect.height,
-              0, "1"
-            );
-            flyImg.style.visibility = "visible";
+    // ✅ Use cardImgWrap as destination, not card1
+    const cr = cardImgWrap.getBoundingClientRect();
+    const hr = heroRect;
+    const lerp = (a, b, t) => a + (b - a) * t;
 
-            /* Hide original */
-            heroImg.style.opacity    = "0";
-            heroImg.style.visibility = "hidden";
-          },
+    // ✅ Scale stays at 1 — size is driven by width/height interpolation
+   const START_BUFFER = 0.04;
+const END_BUFFER   = 0.96;
 
-          onLeaveBack() {
-            flyingActive = false;
+/* Flying image movement */
+gsap.set(flyImg, {
+  x            : lerp(hr.left,   cr.left,   ep),
+  y            : lerp(hr.top,    cr.top,    ep),
+  width        : lerp(hr.width,  cr.width,  ep),
+  height       : lerp(hr.height, cr.height, ep),
+  borderRadius : lerp(0, 18, ep) + "px",
+  scale        : 1,
+  transformOrigin: "top left",
+  force3D      : true,
+});
 
-            heroImg.style.opacity    = "1";
-            heroImg.style.visibility = "visible";
-            flyImg.style.opacity     = "0";
-            flyImg.style.visibility  = "hidden";
+/* Visibility control */
+if (ep <= START_BUFFER) {
 
-            gsap.set(cardImg, { opacity: 0, scale: 0.82 });
-          },
+  gsap.set(heroImg, {
+    opacity: 1,
+    visibility: "visible"
+  });
 
-          onUpdate(self) {
-            if (!flyingActive || !heroSnapRect) return;
+  gsap.set(flyImg, {
+    opacity: 0,
+    visibility: "hidden"
+  });
 
-            const p  = self.progress;
-            const ep = gsap.parseEase("power2.inOut")(p);
+}
+else if (ep > START_BUFFER && ep < END_BUFFER) {
 
-            // Measure the .step-icon-wrap container, NOT card1 or the image inside
-            const cr = cardImgWrap.getBoundingClientRect();
-            const hr = heroSnapRect;
+  gsap.set(heroImg, {
+    opacity: 0,
+    visibility: "hidden"
+  });
 
-            // Clamp hero top so fly never goes above viewport
-            const clampedHeroTop = Math.max(0, hr.top);
+  gsap.set(flyImg, {
+    opacity: 1,
+    visibility: "visible"
+  });
 
-            const revealStart = 0.72;
-            const reveal      = ep > revealStart
-              ? gsap.utils.clamp(0, 1, (ep - revealStart) / (1 - revealStart))
-              : 0;
+}
+else {
 
-            const flyOpacity = ep > 0.97 ? 0 : (1 - reveal);
+  gsap.set(flyImg, {
+    opacity: 0,
+    visibility: "hidden"
+  });
 
-            // Interpolate from hero to circle container (step-icon-wrap is 50% border-radius)
-            positionFly(
-              lerp(hr.left,        cr.left,   ep),
-              lerp(clampedHeroTop, cr.top,    ep),
-              lerp(hr.width,       cr.width,  ep),
-              lerp(hr.height,      cr.height, ep),
-              lerp(0, 50, ep),   // lerp to 50% for circular container
-              flyOpacity.toFixed(3)
-            );
+}
 
-            gsap.set(cardImg, {
-              opacity: reveal,
-              scale  : gsap.utils.interpolate(0.82, 1, reveal),
-            });
-          },
-        });
+    // ✅ Reveal the card's static .step-image as flyImg arrives
+    const revealStart    = 0.72;
+    const revealProgress = ep > revealStart
+      ? gsap.utils.clamp(0, 1, (ep - revealStart) / (1 - revealStart))
+      : 0;
+
+    gsap.set(".step-card .step-image", {
+      scale  : gsap.utils.interpolate(0.82, 1, revealProgress),
+      opacity: revealProgress,
+    });
+
+    // ✅ Swap: show static image, hide flyImg at the very end
+    if (ep > 0.96) {
+      gsap.set(cardImg, { autoAlpha: 1 });
+    } else {
+      gsap.set(cardImg, { autoAlpha: 0 });
+    }
+  },
+});
 
         /* ══════════════════════════════════════════════════════
            STEP CARDS
