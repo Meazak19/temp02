@@ -93,7 +93,13 @@ body {
 .aboutContent p {
   animation: none !important;
 }
-
+.headerImg img,
+.step-image,
+.step-icon-wrap img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
 /* Smooth rendering */
 
 .aboutContent h2,
@@ -243,10 +249,10 @@ body {
     z-index: 2;
      }
      .page-wrapper .headerImg img {
-      transform: scale(1.2) rotate(-10deg);
+      transform: scale(1.0) rotate(-10deg);
       transform-origin: bottom left;
       z-index: 2;
-      position: relative;
+      position: relative; 
      }
 
 
@@ -791,7 +797,7 @@ body {
 
   @media (max-width: 575px) { 
 .page-wrapper .headerImg img {
-  margin-top: 0px;
+  margin-top: 50px;
 }
     .step-icon-wrap.one {
       padding: 5px;
