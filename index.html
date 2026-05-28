@@ -48,14 +48,17 @@
  
 
  
-  
+  .headerImg img,
+.step-icon-wrap img {
+  transition: none !important;
+}
  
 
 
   .headerImg img{
-    transform: scale(1.0) translateY(80px);
+    /* transform: scale(1.0) translateY(80px);  */
 /* backface-visibility: hidden; */
-  will-change: transform;
+  will-change: transform, scale, opacity;
 }
  
 .step-card,
@@ -117,6 +120,11 @@ body {
   will-change: transform, opacity;
 }
 /* Smooth rendering */
+
+.step-icon-wrap img {  
+  display: block;
+  visibility: visible;     /* let GSAP autoAlpha control this */
+}
 
 .aboutContent h2,
 .aboutContent p,
@@ -265,7 +273,7 @@ body {
     z-index: 2;
      }
      .page-wrapper .headerImg img {
-      transform: scale(1.0) rotate(-10deg);
+      transform: scale(1.0);
       transform-origin: bottom left;
       z-index: 2;
       position: relative; 
@@ -316,7 +324,7 @@ body {
 }
 /* In your existing CSS — reduce the scale so it fits */
 .page-wrapper .headerImg img {
-  transform       : scale(1.05) rotate(-5deg);   /* was scale(1.2) rotate(-10deg) */
+  /* transform       : scale(1.05) rotate(-5deg);    */
   transform-origin: bottom center;
 }
 
