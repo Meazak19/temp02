@@ -64,15 +64,265 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
         // Wipe conflicting CSS transforms so getBoundingClientRect()
         // returns the real layout position (no CSS rotate/scale offset)
         heroImg.style.transform       = "none";
-        heroImg.style.transformOrigin = "bottom left";
+        heroImg.style.transformOrigin = "center center";
 
         // Explicitly set the FROM state, then animate TO visible
-        gsap.set(heroImg, { y: 70, opacity: 0, scale: 1 , rotate: isMobile() ? 0 : -15,
+        gsap.set(heroImg, { y: 50, opacity: 0, scale: 1 , rotate: isMobile() ? 0 : 0,
    bottom: isSmMobile() ? 25 : 0});
         gsap.to(heroImg, {
           y: 0, opacity: 1, scale: 1,
-          duration: 1.3, ease: "power3.out", delay: 0.15,
+          duration: 1.3, ease: "power3.out", delay: 1,
         });
+
+        
+        /* ══════════════════════════════════════════════════════
+           FLYING IMAGE
+           ─ Clone is position:fixed, hidden on load.
+           ─ Uses left/top/width/height (NOT gsap x/y transforms)
+             so CSS transform conflicts are impossible.
+           ─ heroSnapRect captured ONCE in onEnter (after load
+             animation finished, before hero scrolls off screen).
+           ─ cardRect re-measured every onUpdate so it tracks
+             the card's real viewport position while scrolling.
+           ─ Fly fades out in sync with step-icon-wrap img fade-in.
+        ══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════
+   FLYING IMAGE — fixed version
+   Bugs fixed:
+   1. Missing onLeave → fly persisted into About section
+   2. heroSnapRect measured too early (0.5s < 1.45s anim)
+   3. Math.max(0,top) clamp caused wrong start pos on mobile
+   4. Mobile bypass: if hero is off-screen, reveal directly
+══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════
+   FLYING IMAGE — jerk-free version
+   Key changes vs original:
+   1. No onEnter — start-rect is measured live every frame
+      so there's never a stale snap on entry.
+   2. heroRect cache used ONLY as fallback when hero is
+      off-screen (getBoundingClientRect returns zeros).
+   3. autoAlpha set once per frame on the correct target
+      only — avoids double-set artifacts.
+   4. flyImg opacity stays 0 until onUpdate runs for the
+      first time (no flash on onEnter).
+══════════════════════════════════════════════════════ */
+const cards       = document.querySelectorAll(".step-card");
+const card1       = cards[0];
+const cardImgWrap = card1.querySelector(".step-icon-wrap");
+const cardImg     = card1.querySelector(".step-icon-wrap img");
+
+/* ── Clone ── */
+const flyImg = heroImg.cloneNode(true);
+Object.assign(flyImg.style, {
+  position       : "fixed",
+  top            : "0",
+  left           : "0",
+  margin         : "0",
+  pointerEvents  : "none",
+  zIndex         : "9998",
+  transformOrigin: "top left",
+  willChange     : "transform, opacity",
+  objectFit      : "contain",
+  borderRadius   : "0px",
+  opacity        : "0",
+  visibility     : "hidden",
+});
+document.body.appendChild(flyImg);
+
+/* ── State ── */
+let flyActive     = false;   // ← declared here, used in onUpdate
+let heroPageX     = 0;
+let heroPageY     = 0;
+let heroW         = 0;
+let heroH         = 0;
+let cardRectCache = null;
+let rectsReady    = false;
+
+/* ── Capture ALL rects as absolute page coords ── */
+function captureAllRects() {
+  // Hero must be at autoAlpha:1 when this runs
+  const hr = heroImg.getBoundingClientRect();
+  if (hr.width === 0) return; // not rendered yet, skip
+
+  heroPageX = hr.left;
+  heroPageY = hr.top + lenis.scroll;
+  heroW     = hr.width;
+  heroH     = hr.height;
+
+  // Lock flyImg size once so scale math is always consistent
+  gsap.set(flyImg, { width: heroW, height: heroH });
+
+  const cr = cardImgWrap.getBoundingClientRect();
+  cardRectCache = {
+    left  : cr.left,
+    top   : cr.top + lenis.scroll,
+    width : cr.width,
+    height: cr.height,
+  };
+
+  rectsReady = true;
+}
+
+// Wait for hero entrance animation to finish (1.3s duration + 0.15s delay = 1.45s)
+gsap.delayedCall(1.6, captureAllRects);
+
+// Re-capture on resize (only when hero is visible)
+window.addEventListener("resize", () => {
+  setTimeout(() => {
+    if (!flyActive) captureAllRects();
+  }, 300);
+});
+
+// Re-capture on ScrollTrigger refresh (only when hero is visible)
+ScrollTrigger.addEventListener("refresh", () => {
+  if (!flyActive) captureAllRects();
+});
+
+// Hide card img on load — fly reveals it when it lands
+gsap.set(cardImg, { autoAlpha: 0 });
+
+/* ── ScrollTrigger ── */
+ScrollTrigger.create({
+  trigger : ".paymentSection",
+  start   : isFirstMobile() ? "top 52%" : "top 96%",
+  end     : isFirstMobile() ? "top 10%" : "top 35%",
+  scrub   : isFirstMobile() ? 1 : 2.9,
+onEnter() {
+  flyActive = true;
+  // Ensure starting state is correct
+  gsap.set(heroImg, { autoAlpha: 1 });
+  gsap.set(flyImg,  { autoAlpha: 0 });
+  gsap.set(cardImg, { autoAlpha: 0 });
+},
+
+onEnterBack() {
+  flyActive = true;
+
+  // Snap flyImg to card position before hiding cardImg
+  const crLeft = cardRectCache.left;
+  const crTop  = cardRectCache.top - lenis.scroll;
+  const crW    = cardRectCache.width;
+  const crH    = cardRectCache.height;
+
+  const targetScale = Math.min(crW / heroW, crH / heroH);
+  const targetX     = crLeft + (crW - heroW * targetScale) / 2;
+  const targetY     = crTop  + (crH - heroH * targetScale) / 2;
+
+  gsap.set(flyImg, {
+    x              : targetX,
+    y              : targetY,
+    scale          : targetScale,
+    borderRadius   : "50%",
+    transformOrigin: "top left",
+    autoAlpha      : 0,
+  });
+
+  gsap.set(cardImg, { autoAlpha: 0 });
+  gsap.set(heroImg, { autoAlpha: 0 });
+},
+
+onLeave() {
+  flyActive = false;
+  gsap.set(flyImg,  { autoAlpha: 0 });
+  gsap.set(heroImg, { autoAlpha: 0 });
+  gsap.set(cardImg, { autoAlpha: 1 });
+},
+
+onLeaveBack() {
+  flyActive = false;
+
+  // Get hero's CURRENT viewport position before showing it
+  const heroViewY = heroPageY - lenis.scroll;
+  const heroViewX = heroPageX;
+
+  // Snap flyImg back to exact hero position FIRST, then hide
+  // This prevents the 1-frame jump from card→hero position
+  gsap.set(flyImg, {
+    x              : heroViewX,
+    y              : heroViewY,
+    scale          : 1,
+    borderRadius   : "0%",
+    transformOrigin: "top left",
+    autoAlpha      : 0,         // hide after snapping position
+  });
+
+  gsap.set(heroImg, { autoAlpha: 1 });
+  gsap.set(cardImg, { autoAlpha: 0 });
+
+  // Re-capture after hero is visible and layout is stable
+  gsap.delayedCall(0.05, captureAllRects);
+},
+
+        onUpdate(self) {
+  if (!flyActive)  return;
+  if (!rectsReady) return;
+
+  const p    = self.progress;
+  const ep   = gsap.parseEase("power1.inOut")(p);
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  /* Hero → viewport coords */
+  const heroViewX = heroPageX;
+  const heroViewY = heroPageY - lenis.scroll;
+
+  /* Card → viewport coords */
+  const crLeft = cardRectCache.left;
+  const crTop  = cardRectCache.top - lenis.scroll;
+  const crW    = cardRectCache.width;
+  const crH    = cardRectCache.height;
+
+  /* Uniform scale */
+  const targetScale = Math.min(crW / heroW, crH / heroH);
+  const targetX     = crLeft + (crW - heroW * targetScale) / 2;
+  const targetY     = crTop  + (crH - heroH * targetScale) / 2;
+
+  /* ── Bubble arc: scale overshoots in the middle ──
+     At ep=0   → scale = 1        (same size as hero)
+     At ep=0.5 → scale = 1 + bubble peak (biggest)
+     At ep=1   → scale = targetScale (card size)
+     Uses a sine arch (sin(π*ep)) for the overshoot bump
+  */
+  const bubblePeak   = 0.18;                              // how much it pops (18% bigger at peak)
+  const bubbleArc    = Math.sin(Math.PI * ep) * bubblePeak;
+  const baseScale    = lerp(1, targetScale, ep);
+  const bubbleScale  = baseScale + bubbleArc;
+
+  /* ── Offset correction so bubble grows from CENTER not top-left ──
+     As scale grows beyond baseScale, the extra pixels push right+down
+     (because transformOrigin is top-left). Shift x/y back by half
+     the extra size to keep the image visually centered on its path.
+  */
+  const extraW = heroW * bubbleArc;
+  const extraH = heroH * bubbleArc;
+
+  gsap.set(flyImg, {
+    x              : lerp(heroViewX, targetX, ep) - extraW / 2,
+    y              : lerp(heroViewY, targetY, ep) - extraH / 2,
+    scale          : bubbleScale,
+    borderRadius   : lerp(0, 50, ep) + "%",
+    transformOrigin: "top left",
+    force3D        : true,
+  });
+
+  /* ── Visibility: instant swap at seams, no fading ──
+     flyImg pops IN  at ep > 0   (hero disappears instantly)
+     flyImg pops OUT at ep > 0.95 (cardImg appears instantly)
+  */
+  if (ep < 0.05) {
+    gsap.set(heroImg, { autoAlpha: 1 });
+    gsap.set(flyImg,  { autoAlpha: 0 });
+    gsap.set(cardImg, { autoAlpha: 0 });
+  } else if (ep < 0.95) {
+    gsap.set(heroImg, { autoAlpha: 0 });
+    gsap.set(flyImg,  { autoAlpha: 1 });
+    gsap.set(cardImg, { autoAlpha: 0 });
+  } else {
+    gsap.set(flyImg,  { autoAlpha: 0 });
+    gsap.set(heroImg, { autoAlpha: 0 });
+    gsap.set(cardImg, { autoAlpha: 1 });
+  }
+},
+});
 
         /* Arrow + Button entrance */
         gsap.set([".headerSection .arrowImg", ".headerContent .orderBtn"], { opacity: 0 });
@@ -142,153 +392,6 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
           stagger: { each: 0.03, repeat: -1, yoyo: true }, force3D: true,
         });
 
-        /* ══════════════════════════════════════════════════════
-           FLYING IMAGE
-           ─ Clone is position:fixed, hidden on load.
-           ─ Uses left/top/width/height (NOT gsap x/y transforms)
-             so CSS transform conflicts are impossible.
-           ─ heroSnapRect captured ONCE in onEnter (after load
-             animation finished, before hero scrolls off screen).
-           ─ cardRect re-measured every onUpdate so it tracks
-             the card's real viewport position while scrolling.
-           ─ Fly fades out in sync with step-icon-wrap img fade-in.
-        ══════════════════════════════════════════════════════ */
-/* ══════════════════════════════════════════════════════
-   FLYING IMAGE — fixed version
-   Bugs fixed:
-   1. Missing onLeave → fly persisted into About section
-   2. heroSnapRect measured too early (0.5s < 1.45s anim)
-   3. Math.max(0,top) clamp caused wrong start pos on mobile
-   4. Mobile bypass: if hero is off-screen, reveal directly
-══════════════════════════════════════════════════════ */
-
-const cards       = document.querySelectorAll(".step-card");
-const card1       = cards[0];
-const cardImgWrap = card1.querySelector(".step-icon-wrap");
-const cardImg     = card1.querySelector(".step-icon-wrap img");
-
-  const flyImg = heroImg.cloneNode(true);
-          Object.assign(flyImg.style, {
-            position      : "fixed",
-            top           : "0",
-            left          : "0",
-            margin        : "0",
-            pointerEvents : "none",
-            zIndex        : "9998",
-            transformOrigin: "top left",
-            willChange    : "transform, width, height, opacity",
-            objectFit     : "contain",
-            borderRadius  : "0px",
-            opacity       : "0",
-          });
-          document.body.appendChild(flyImg);
-  
-          let heroRect = heroImg.getBoundingClientRect();
-          window.addEventListener("resize", () => {
-            setTimeout(() => { heroRect = heroImg.getBoundingClientRect(); }, 260);
-          });
-  
-    ScrollTrigger.create({
-  trigger : ".paymentSection",
-  // start: isMobile() ? "top 52%" : "top 96%",
-  start: isFirstMobile() ? "top 52%" : "top 96%",
-    end   : isFirstMobile() ? "top 10%" : "top 35%",
-    scrub : isFirstMobile() ? 0.5 : 1.5,
-  // start   : "top 96%",
-  // end     : "top 35%",
-  // scrub   : 1.5,
-
-  onEnter() { 
-    const hr = heroImg.getBoundingClientRect();
-    gsap.set(flyImg, {
-      x: hr.left, y: hr.top,
-      width: hr.width, height: hr.height,
-      opacity: 1, scale: 1.2, borderRadius: "0px",
-    });
-  },
-
- 
-
-  onUpdate(self) {
-    const p  = self.progress;
-    const ep = gsap.parseEase("power2.inOut")(p);
-
-    // ✅ Use cardImgWrap as destination, not card1
-    const cr = cardImgWrap.getBoundingClientRect();
-    const hr = heroRect;
-    const lerp = (a, b, t) => a + (b - a) * t;
-
-    // ✅ Scale stays at 1 — size is driven by width/height interpolation
-   const START_BUFFER = 0.04;
-const END_BUFFER   = 0.96;
-
-/* Flying image movement */
-gsap.set(flyImg, {
-  x            : lerp(hr.left,   cr.left,   ep),
-  y            : lerp(hr.top,    cr.top,    ep),
-  width        : lerp(hr.width,  cr.width,  ep),
-  height       : lerp(hr.height, cr.height, ep),
-  borderRadius : lerp(0, 18, ep) + "px",
-  scale        : 1,
-  transformOrigin: "top left",
-  force3D      : true,
-});
-
-/* Visibility control */
-if (ep <= START_BUFFER) {
-
-  gsap.set(heroImg, {
-    opacity: 1,
-    visibility: "visible"
-  });
-
-  gsap.set(flyImg, {
-    opacity: 0,
-    visibility: "hidden"
-  });
-
-}
-else if (ep > START_BUFFER && ep < END_BUFFER) {
-
-  gsap.set(heroImg, {
-    opacity: 0,
-    visibility: "hidden"
-  });
-
-  gsap.set(flyImg, {
-    opacity: 1,
-    visibility: "visible"
-  });
-
-}
-else {
-
-  gsap.set(flyImg, {
-    opacity: 0,
-    visibility: "hidden"
-  });
-
-}
-
-    // ✅ Reveal the card's static .step-image as flyImg arrives
-    const revealStart    = 0.72;
-    const revealProgress = ep > revealStart
-      ? gsap.utils.clamp(0, 1, (ep - revealStart) / (1 - revealStart))
-      : 0;
-
-    gsap.set(".step-card .step-image", {
-      scale  : gsap.utils.interpolate(0.82, 1, revealProgress),
-      opacity: revealProgress,
-    });
-
-    // ✅ Swap: show static image, hide flyImg at the very end
-    if (ep > 0.96) {
-      gsap.set(cardImg, { autoAlpha: 1 });
-    } else {
-      gsap.set(cardImg, { autoAlpha: 0 });
-    }
-  },
-});
 
         /* ══════════════════════════════════════════════════════
            STEP CARDS
