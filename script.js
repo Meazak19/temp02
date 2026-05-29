@@ -46,285 +46,229 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
         window.lenisStop  = () => lenis.stop();
         window.lenisStart = () => lenis.start();
 
-        const TOGGLE   = "play none none reverse";
+        const TOGGLE        = "play none none reverse";
         const isFirstMobile = () => window.innerWidth < 991;
-        const isMobile = () => window.innerWidth < 768;
-        const isSmMobile = () => window.innerWidth < 576;
+        const isMobile      = () => window.innerWidth < 768;
+        const isSmMobile    = () => window.innerWidth < 576;
 
         /* ══════════════════════════════════════════════════════
            HERO IMAGE
-           ─ Clear ALL CSS transforms first so GSAP is the only
-             source of truth for position/scale/rotate.
-           ─ Use gsap.set (from-state) → gsap.to (animate in).
-             Never gsap.from() — it applies the hidden state early.
         ══════════════════════════════════════════════════════ */
-
         const heroImg = document.querySelector(".headerImg img");
 
-        // Wipe conflicting CSS transforms so getBoundingClientRect()
-        // returns the real layout position (no CSS rotate/scale offset)
         heroImg.style.transform       = "none";
-        heroImg.style.transformOrigin = "center center";
+        heroImg.style.transformOrigin = "top left"; /* MUST be top left — matches flyImg */
 
-        // Explicitly set the FROM state, then animate TO visible
-        gsap.set(heroImg, { y: 50, opacity: 0, scale: 1 , rotate: isMobile() ? 0 : 0,
-   bottom: isSmMobile() ? 25 : 0});
+        gsap.set(heroImg, { y: 50, opacity: 0, scale: 1, bottom: isSmMobile() ? 25 : 0 });
         gsap.to(heroImg, {
           y: 0, opacity: 1, scale: 1,
           duration: 1.3, ease: "power3.out", delay: 1,
         });
 
-        
         /* ══════════════════════════════════════════════════════
            FLYING IMAGE
-           ─ Clone is position:fixed, hidden on load.
-           ─ Uses left/top/width/height (NOT gsap x/y transforms)
-             so CSS transform conflicts are impossible.
-           ─ heroSnapRect captured ONCE in onEnter (after load
-             animation finished, before hero scrolls off screen).
-           ─ cardRect re-measured every onUpdate so it tracks
-             the card's real viewport position while scrolling.
-           ─ Fly fades out in sync with step-icon-wrap img fade-in.
         ══════════════════════════════════════════════════════ */
-/* ══════════════════════════════════════════════════════
-   FLYING IMAGE — fixed version
-   Bugs fixed:
-   1. Missing onLeave → fly persisted into About section
-   2. heroSnapRect measured too early (0.5s < 1.45s anim)
-   3. Math.max(0,top) clamp caused wrong start pos on mobile
-   4. Mobile bypass: if hero is off-screen, reveal directly
-══════════════════════════════════════════════════════ */
-/* ══════════════════════════════════════════════════════
-   FLYING IMAGE — jerk-free version
-   Key changes vs original:
-   1. No onEnter — start-rect is measured live every frame
-      so there's never a stale snap on entry.
-   2. heroRect cache used ONLY as fallback when hero is
-      off-screen (getBoundingClientRect returns zeros).
-   3. autoAlpha set once per frame on the correct target
-      only — avoids double-set artifacts.
-   4. flyImg opacity stays 0 until onUpdate runs for the
-      first time (no flash on onEnter).
-══════════════════════════════════════════════════════ */
-const cards       = document.querySelectorAll(".step-card");
-const card1       = cards[0];
-const cardImgWrap = card1.querySelector(".step-icon-wrap");
-const cardImg     = card1.querySelector(".step-icon-wrap img");
+        const cards       = document.querySelectorAll(".step-card");
+        const card1       = cards[0];
+        const cardImgWrap = card1.querySelector(".step-icon-wrap");
+        const cardImg     = card1.querySelector(".step-icon-wrap img");
 
-/* ── Clone ── */
-const flyImg = heroImg.cloneNode(true);
-Object.assign(flyImg.style, {
-  position       : "fixed",
-  top            : "0",
-  left           : "0",
-  margin         : "0",
-  pointerEvents  : "none",
-  zIndex         : "9998",
-  transformOrigin: "top left",
-  willChange     : "transform, opacity",
-  objectFit      : "contain",
-  borderRadius   : "0px",
-  opacity        : "0",
-  visibility     : "hidden",
-});
-document.body.appendChild(flyImg);
+        /* ── Clone ── */
+        const flyImg = heroImg.cloneNode(true);
+        Object.assign(flyImg.style, {
+          position       : "fixed",
+          top            : "0",
+          left           : "0",
+          margin         : "0",
+          pointerEvents  : "none",
+          zIndex         : "9998",
+          transformOrigin: "top left",
+          willChange     : "transform, opacity",
+          objectFit      : "contain",
+          borderRadius   : "0px",
+          opacity        : "0",
+          visibility     : "hidden",
+        });
+        document.body.appendChild(flyImg);
 
-/* ── State ── */
-let flyActive     = false;   // ← declared here, used in onUpdate
-let heroPageX     = 0;
-let heroPageY     = 0;
-let heroW         = 0;
-let heroH         = 0;
-let cardRectCache = null;
-let rectsReady    = false;
+        /* ── State ── */
+        let flyActive     = false;
+        let heroPageX     = 0;
+        let heroPageY     = 0;
+        let heroW         = 0;
+        let heroH         = 0;
+        let cardRectCache = null;
+        let rectsReady    = false;
 
-/* ── Capture ALL rects as absolute page coords ── */
-function captureAllRects() {
-  // Hero must be at autoAlpha:1 when this runs
-  const hr = heroImg.getBoundingClientRect();
-  if (hr.width === 0) return; // not rendered yet, skip
+        /* ── ONE captureAllRects — clears GSAP x/y before measuring ── */
+        function captureAllRects() {
+          /* Temporarily zero out GSAP's x/y so getBoundingClientRect
+             returns the true CSS layout position, not the transformed one.
+             We restore after measuring so the hero stays visually correct. */
+          const prevX = gsap.getProperty(heroImg, "x");
+          const prevY = gsap.getProperty(heroImg, "y");
+          gsap.set(heroImg, { x: 0, y: 0 });
 
-  heroPageX = hr.left;
-  heroPageY = hr.top + lenis.scroll;
-  heroW     = hr.width;
-  heroH     = hr.height;
+          const hr = heroImg.getBoundingClientRect();
 
-  // Lock flyImg size once so scale math is always consistent
-  gsap.set(flyImg, { width: heroW, height: heroH });
+          /* Restore immediately — hero must not visually jump */
+          gsap.set(heroImg, { x: prevX, y: prevY });
 
-  const cr = cardImgWrap.getBoundingClientRect();
-  cardRectCache = {
-    left  : cr.left,
-    top   : cr.top + lenis.scroll,
-    width : cr.width,
-    height: cr.height,
-  };
+          if (hr.width === 0) return; /* not rendered yet */
 
-  rectsReady = true;
-}
+          heroPageX = hr.left;
+          heroPageY = hr.top + lenis.scroll;
+          heroW     = hr.width;
+          heroH     = hr.height;
 
-// Wait for hero entrance animation to finish (1.3s duration + 0.15s delay = 1.45s)
-gsap.delayedCall(1.6, captureAllRects);
+          gsap.set(flyImg, { width: heroW, height: heroH });
 
-// Re-capture on resize (only when hero is visible)
-window.addEventListener("resize", () => {
-  setTimeout(() => {
-    if (!flyActive) captureAllRects();
-  }, 300);
-});
+          const cr = cardImgWrap.getBoundingClientRect();
+          cardRectCache = {
+            left  : cr.left,
+            top   : cr.top + lenis.scroll,
+            width : cr.width,
+            height: cr.height,
+          };
 
-// Re-capture on ScrollTrigger refresh (only when hero is visible)
-ScrollTrigger.addEventListener("refresh", () => {
-  if (!flyActive) captureAllRects();
-});
+          rectsReady = true;
+        }
 
-// Hide card img on load — fly reveals it when it lands
-gsap.set(cardImg, { autoAlpha: 0 });
+        /* hero anim: 1.3s duration + 1s delay = 2.3s — capture after it settles */
+        gsap.delayedCall(2.4, captureAllRects);
 
-/* ── ScrollTrigger ── */
-ScrollTrigger.create({
-  trigger : ".paymentSection",
-  start   : isFirstMobile() ? "top 52%" : "top 96%",
-  end     : isFirstMobile() ? "top 10%" : "top 35%",
-  scrub   : isFirstMobile() ? 1 : 2.9,
-onEnter() {
-  flyActive = true;
-  // Ensure starting state is correct
-  gsap.set(heroImg, { autoAlpha: 1 });
-  gsap.set(flyImg,  { autoAlpha: 0 });
-  gsap.set(cardImg, { autoAlpha: 0 });
-},
+        ScrollTrigger.addEventListener("refresh", () => {
+          if (!flyActive) captureAllRects();
+        });
 
-onEnterBack() {
-  flyActive = true;
+        window.addEventListener("resize", () => {
+          setTimeout(() => { if (!flyActive) captureAllRects(); }, 300);
+        });
 
-  // Snap flyImg to card position before hiding cardImg
-  const crLeft = cardRectCache.left;
-  const crTop  = cardRectCache.top - lenis.scroll;
-  const crW    = cardRectCache.width;
-  const crH    = cardRectCache.height;
+        /* Hide cardImg until fly lands */
+        gsap.set(cardImg, { autoAlpha: 0 });
 
-  const targetScale = Math.min(crW / heroW, crH / heroH);
-  const targetX     = crLeft + (crW - heroW * targetScale) / 2;
-  const targetY     = crTop  + (crH - heroH * targetScale) / 2;
+        /* ── ScrollTrigger ── */
+        ScrollTrigger.create({
+          trigger : ".paymentSection",
+          start   : isFirstMobile() ? "top 52%" : "top 96%",
+          end     : isFirstMobile() ? "top 10%" : "top 35%",
+          scrub   : isFirstMobile() ? 1 : 2.9,
 
-  gsap.set(flyImg, {
-    x              : targetX,
-    y              : targetY,
-    scale          : targetScale,
-    borderRadius   : "50%",
-    transformOrigin: "top left",
-    autoAlpha      : 0,
-  });
+              onEnter() {
+                flyActive = true;
+                gsap.set(heroImg, { autoAlpha: 1, visibility: "visible" });
+                gsap.set(flyImg,  { autoAlpha: 0, visibility: "hidden"  }); /* ← hidden until ep > 0.04 */
+                gsap.set(cardImg, { autoAlpha: 0 });
+              },
 
-  gsap.set(cardImg, { autoAlpha: 0 });
-  gsap.set(heroImg, { autoAlpha: 0 });
-},
+          onEnterBack() {
+            flyActive = true;
+            /* Pre-position flyImg at card so swap at ep>0.95 is seamless */
+            if (cardRectCache) {
+              const crLeft = cardRectCache.left;
+              const crTop  = cardRectCache.top - lenis.scroll;
+              const crW    = cardRectCache.width;
+              const crH    = cardRectCache.height;
+              const ts     = Math.min(crW / heroW, crH / heroH);
+              gsap.set(flyImg, {
+                x: crLeft + (crW - heroW * ts) / 2,
+                y: crTop  + (crH - heroH * ts) / 2,
+                scale: ts, borderRadius: "50%",
+                transformOrigin: "top left", autoAlpha: 0,
+              });
+            }
+            gsap.set(cardImg, { autoAlpha: 0 });
+            gsap.set(heroImg, { autoAlpha: 0, visibility: "hidden" });
+          },
 
-onLeave() {
-  flyActive = false;
-  gsap.set(flyImg,  { autoAlpha: 0 });
-  gsap.set(heroImg, { autoAlpha: 0 });
-  gsap.set(cardImg, { autoAlpha: 1 });
-},
+          onLeave() {
+            flyActive = false;
+            gsap.set(flyImg,  { autoAlpha: 0 });
+            gsap.set(heroImg, { autoAlpha: 0, visibility: "hidden" });
+            gsap.set(cardImg, { autoAlpha: 1 });
+          },
 
-onLeaveBack() {
-  flyActive = false;
+          onLeaveBack() {
+            flyActive = false;
 
-  // Get hero's CURRENT viewport position before showing it
-  const heroViewY = heroPageY - lenis.scroll;
-  const heroViewX = heroPageX;
+            /* Pre-position flyImg exactly at hero viewport position
+               so when it hides and heroImg shows there is zero jump */
+            const heroViewX = heroPageX;
+            const heroViewY = heroPageY - lenis.scroll;
 
-  // Snap flyImg back to exact hero position FIRST, then hide
-  // This prevents the 1-frame jump from card→hero position
-  gsap.set(flyImg, {
-    x              : heroViewX,
-    y              : heroViewY,
-    scale          : 1,
-    borderRadius   : "0%",
-    transformOrigin: "top left",
-    autoAlpha      : 0,         // hide after snapping position
-  });
+            gsap.set(flyImg, {
+              x: heroViewX, y: heroViewY,
+              scale: 0, borderRadius: "0%",
+              transformOrigin: "top left", autoAlpha: 0,
+            });
 
-  gsap.set(heroImg, { autoAlpha: 1 });
-  gsap.set(cardImg, { autoAlpha: 0 });
+            gsap.set(heroImg, { autoAlpha: 1, x: 0, y: 0, scale: 1, visibility: "visible" });
+            gsap.set(cardImg, { autoAlpha: 0 });
 
-  // Re-capture after hero is visible and layout is stable
-  gsap.delayedCall(0.05, captureAllRects);
-},
+            /* Re-capture now that heroImg is at natural position */
+            gsap.delayedCall(0.05, captureAllRects);
+          },
 
-        onUpdate(self) {
-  if (!flyActive)  return;
-  if (!rectsReady) return;
+            onUpdate(self) {
+              if (!flyActive)  return;
+              if (!rectsReady) return;
 
-  const p    = self.progress;
-  const ep   = gsap.parseEase("power1.inOut")(p);
-  const lerp = (a, b, t) => a + (b - a) * t;
+              const p    = self.progress;
+              const ep   = gsap.parseEase("power1.inOut")(p);
+              const lerp = (a, b, t) => a + (b - a) * t;
 
-  /* Hero → viewport coords */
-  const heroViewX = heroPageX;
-  const heroViewY = heroPageY - lenis.scroll;
+              const heroViewX = heroPageX;
+              const heroViewY = heroPageY - lenis.scroll;
 
-  /* Card → viewport coords */
-  const crLeft = cardRectCache.left;
-  const crTop  = cardRectCache.top - lenis.scroll;
-  const crW    = cardRectCache.width;
-  const crH    = cardRectCache.height;
+              const crLeft = cardRectCache.left;
+              const crTop  = cardRectCache.top - lenis.scroll;
+              const crW    = cardRectCache.width;
+              const crH    = cardRectCache.height;
 
-  /* Uniform scale */
-  const targetScale = Math.min(crW / heroW, crH / heroH);
-  const targetX     = crLeft + (crW - heroW * targetScale) / 2;
-  const targetY     = crTop  + (crH - heroH * targetScale) / 2;
+              const targetScale = Math.min(crW / heroW, crH / heroH);
+              const targetX     = crLeft + (crW - heroW * targetScale) / 2;
+              const targetY     = crTop  + (crH - heroH * targetScale) / 2;
 
-  /* ── Bubble arc: scale overshoots in the middle ──
-     At ep=0   → scale = 1        (same size as hero)
-     At ep=0.5 → scale = 1 + bubble peak (biggest)
-     At ep=1   → scale = targetScale (card size)
-     Uses a sine arch (sin(π*ep)) for the overshoot bump
-  */
-  const bubblePeak   = 0.18;                              // how much it pops (18% bigger at peak)
-  const bubbleArc    = Math.sin(Math.PI * ep) * bubblePeak;
-  const baseScale    = lerp(1, targetScale, ep);
-  const bubbleScale  = baseScale + bubbleArc;
+              /* Always update position/scale every frame regardless of visibility */
+              gsap.set(flyImg, {
+                x              : lerp(heroViewX, targetX, ep),
+                y              : lerp(heroViewY, targetY, ep),
+                scale          : lerp(1, targetScale, ep),
+                borderRadius   : lerp(0, 50, ep) + "%",
+                transformOrigin: "top left",
+                force3D        : true,
+              });
 
-  /* ── Offset correction so bubble grows from CENTER not top-left ──
-     As scale grows beyond baseScale, the extra pixels push right+down
-     (because transformOrigin is top-left). Shift x/y back by half
-     the extra size to keep the image visually centered on its path.
-  */
-  const extraW = heroW * bubbleArc;
-  const extraH = heroH * bubbleArc;
+              /* ── Visibility: strictly one image at a time ──
+                flyImg is ONLY made visible in the middle zone.
+                It is explicitly hidden in start and end zones
+                so there is never a frame where two images overlap.
+              */
+              if (ep < 0.0) {
+                /* Start — hero only, fly hidden */
+                gsap.set(heroImg, { autoAlpha: 1, visibility: "visible" });
+                gsap.set(flyImg,  { autoAlpha: 0, visibility: "hidden"  }); /* ← explicit hide */
+                gsap.set(cardImg, { autoAlpha: 0 });
 
-  gsap.set(flyImg, {
-    x              : lerp(heroViewX, targetX, ep) - extraW / 2,
-    y              : lerp(heroViewY, targetY, ep) - extraH / 2,
-    scale          : bubbleScale,
-    borderRadius   : lerp(0, 50, ep) + "%",
-    transformOrigin: "top left",
-    force3D        : true,
-  });
+              } else if (ep > 0.96) {
+                /* End — card only, fly hidden */
+                gsap.set(heroImg, { autoAlpha: 0, visibility: "hidden"  });
+                gsap.set(flyImg,  { autoAlpha: 0, visibility: "hidden"  }); /* ← explicit hide */
+                gsap.set(cardImg, { autoAlpha: 1 });
 
-  /* ── Visibility: instant swap at seams, no fading ──
-     flyImg pops IN  at ep > 0   (hero disappears instantly)
-     flyImg pops OUT at ep > 0.95 (cardImg appears instantly)
-  */
-  if (ep < 0.05) {
-    gsap.set(heroImg, { autoAlpha: 1 });
-    gsap.set(flyImg,  { autoAlpha: 0 });
-    gsap.set(cardImg, { autoAlpha: 0 });
-  } else if (ep < 0.95) {
-    gsap.set(heroImg, { autoAlpha: 0 });
-    gsap.set(flyImg,  { autoAlpha: 1 });
-    gsap.set(cardImg, { autoAlpha: 0 });
-  } else {
-    gsap.set(flyImg,  { autoAlpha: 0 });
-    gsap.set(heroImg, { autoAlpha: 0 });
-    gsap.set(cardImg, { autoAlpha: 1 });
-  }
-},
-});
+              } else {
+                /* Mid-flight — fly only */
+                gsap.set(heroImg, { autoAlpha: 0, visibility: "hidden"  });
+                gsap.set(flyImg,  { autoAlpha: 1, visibility: "visible" }); /* ← only shown here */
+                gsap.set(cardImg, { autoAlpha: 0 });
+              }
+            },
+        });
 
-        /* Arrow + Button entrance */
+        /* ══════════════════════════════════════════════════════
+           ARROW + BUTTON ENTRANCE
+        ══════════════════════════════════════════════════════ */
         gsap.set([".headerSection .arrowImg", ".headerContent .orderBtn"], { opacity: 0 });
         gsap.fromTo(".headerSection .arrowImg",
           { x: 60, opacity: 0 },
@@ -338,53 +282,59 @@ onLeaveBack() {
         /* ══════════════════════════════════════════════════════
            ALL HEADINGS — SplitType char animation
         ══════════════════════════════════════════════════════ */
-
-        document.querySelectorAll("h1, h2, h3").forEach((el) => {
-          el.style.overflow = "hidden";
-        });
-
-        const allHeadings    = gsap.utils.toArray("h1, h2, h3");
-        const splitInstances = [];
-
-        allHeadings.forEach((el) => {
-          const split = new SplitType(el, { types: "chars" });
-          splitInstances.push(split);
-
-          split.chars.forEach((char) => {
-            char.style.display    = "inline-block";
-            char.style.willChange = "transform, opacity";
+                document.querySelectorAll("h1, h2, h3").forEach((el) => {
+            el.style.overflow = "hidden";
           });
 
-          gsap.set(split.chars, { y: 120, opacity: 0 });
+          const allHeadings    = gsap.utils.toArray("h1, h2, h3");
+          const splitInstances = [];
 
-          const isHeader = !!el.closest(".headerSection");
+          allHeadings.forEach((el) => {
+            const split = new SplitType(el, { types: "chars" });
+            splitInstances.push(split);
 
-          function playHeading() {
-            gsap.fromTo(split.chars,
-              { y: 120, opacity: 0 },
-              { y: 0, opacity: 1, stagger: 0.025, duration: 0.75, ease: "power4.out", overwrite: true }
-            );
-          }
-          function reverseHeading() {
-            gsap.to(split.chars, {
-              y: -80, opacity: 0, stagger: 0.015, duration: 0.45, ease: "power3.in", overwrite: true,
+            split.chars.forEach((char) => {
+              char.style.display    = "inline-block";
+              char.style.willChange = "transform, opacity";
             });
-          }
 
-          if (isHeader) {
-            gsap.delayedCall(0.2, playHeading);
-            ScrollTrigger.create({
-              trigger: el, start: "top top", end: "bottom top",
-              onLeave: reverseHeading, onEnterBack: playHeading,
-            });
-          } else {
-            ScrollTrigger.create({
-              trigger: el, start: "top 85%", end: "bottom top",
-              onEnter: playHeading, onEnterBack: playHeading,
-              onLeave: reverseHeading, onLeaveBack: reverseHeading,
-            });
-          }
-        });
+            gsap.set(split.chars, { y: 80, opacity: 0 });
+
+            const isHeader = !!el.closest(".headerSection");
+
+            function playHeading() {
+              gsap.fromTo(split.chars,
+                { y: 80, opacity: 0 },
+                { y: 0, opacity: 1, stagger: 0.025, duration: 0.75, ease: "power4.out", overwrite: true }
+              );
+            }
+            function reverseHeading() {
+              gsap.to(split.chars, {
+                y: -50, opacity: 0, stagger: 0.015, duration: 0.45, ease: "power3.in", overwrite: true,
+              });
+            }
+
+            if (isHeader) {
+              gsap.delayedCall(0.2, playHeading);
+              ScrollTrigger.create({
+                trigger: el, start: "top top", end: "bottom top",
+                onLeave: reverseHeading, onEnterBack: playHeading,
+              });
+            } else {
+              ScrollTrigger.create({
+                trigger : el,
+                start   : isMobile() ? "top 95%" : "top 85%", /* ← lower threshold on mobile */
+                end     : "bottom top",
+                /* ── on mobile only play/reverse, no onLeave reverse ──
+                  Fast mobile scroll triggers onLeave immediately which
+                  cancels the animation before it's visible             */
+                onEnter     : playHeading,
+                onEnterBack : playHeading,
+                onLeave     : isMobile() ? null : reverseHeading,
+                onLeaveBack : isMobile() ? null : reverseHeading,
+              });
+            }
+          });
 
         /* ── Wave letters ── */
         gsap.to(".wave-letter", {
@@ -392,11 +342,9 @@ onLeaveBack() {
           stagger: { each: 0.03, repeat: -1, yoyo: true }, force3D: true,
         });
 
-
         /* ══════════════════════════════════════════════════════
            STEP CARDS
         ══════════════════════════════════════════════════════ */
-
         gsap.from(cards[0], {
           scrollTrigger: { trigger: cards[0], start: "top 80%", toggleActions: TOGGLE },
           x: -150, opacity: 0, rotateY: -45, duration: 1.5, ease: "power3.out",
@@ -437,7 +385,6 @@ onLeaveBack() {
         /* ══════════════════════════════════════════════════════
            ABOUT
         ══════════════════════════════════════════════════════ */
-
         gsap.from(".aboutContent p", {
           scrollTrigger: { trigger: ".aboutContent p", start: "top 88%", toggleActions: TOGGLE },
           y: 40, opacity: 0, duration: 0.8, ease: "power2.out", delay: 0.2,
@@ -458,7 +405,6 @@ onLeaveBack() {
         /* ══════════════════════════════════════════════════════
            BANNER
         ══════════════════════════════════════════════════════ */
-
         gsap.from(".wrapsImg", {
           scrollTrigger: { trigger: ".bannerSection", start: "top 80%", toggleActions: TOGGLE },
           y: 80, opacity: 0, scale: 0.85, duration: 1.2, ease: "power4.out",
@@ -471,7 +417,6 @@ onLeaveBack() {
         /* ══════════════════════════════════════════════════════
            MENU
         ══════════════════════════════════════════════════════ */
-
         gsap.from(".manImg", {
           scrollTrigger: { trigger: ".menuSection", start: "top 80%", toggleActions: TOGGLE },
           x: -100, opacity: 0, duration: 1.2, ease: "power3.out",
@@ -492,7 +437,6 @@ onLeaveBack() {
         /* ══════════════════════════════════════════════════════
            GALLERY
         ══════════════════════════════════════════════════════ */
-
         const galleryImgs = gsap.utils.toArray(".galleryParent img");
         gsap.from(galleryImgs, {
           scrollTrigger: { trigger: ".galleryGrid", start: "top 85%", toggleActions: TOGGLE },
@@ -519,7 +463,6 @@ onLeaveBack() {
         window.addEventListener("resize", () => {
           clearTimeout(resizeTimer);
           resizeTimer = setTimeout(() => {
-            /* Re-split headings */
             splitInstances.forEach((s) => s.revert());
             splitInstances.length = 0;
             allHeadings.forEach((el) => {
@@ -531,8 +474,7 @@ onLeaveBack() {
               });
               gsap.set(split.chars, { y: 0, opacity: 1 });
             });
-            /* Reset fly snapshot so next onEnter re-measures */
-            heroSnapRect = null;
+            rectsReady = false; /* force re-capture after refresh */
             lenis.resize();
             ScrollTrigger.refresh();
           }, 250);
