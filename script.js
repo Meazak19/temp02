@@ -282,59 +282,81 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
         /* ══════════════════════════════════════════════════════
            ALL HEADINGS — SplitType char animation
         ══════════════════════════════════════════════════════ */
-                document.querySelectorAll("h1, h2, h3").forEach((el) => {
-            el.style.overflow = "hidden";
-          });
+         /* ── Give each heading enough height before splitting ── */
+document.querySelectorAll("h1, h2, h3").forEach((el) => {
+  el.style.overflow    = "visible"; /* ← NOT hidden — causes height collapse on mobile */
+  el.style.clipPath    = "inset(0 0 -20px 0)"; /* clips overflow visually without collapsing */
+});
 
-          const allHeadings    = gsap.utils.toArray("h1, h2, h3");
-          const splitInstances = [];
+const allHeadings    = gsap.utils.toArray("h1, h2, h3");
+const splitInstances = [];
 
-          allHeadings.forEach((el) => {
-            const split = new SplitType(el, { types: "chars" });
-            splitInstances.push(split);
+/* ── Split AFTER fonts are loaded so char widths are correct ── */
+function initHeadings() {
+  allHeadings.forEach((el) => {
+    /* Clear any previous split */
+    const existing = splitInstances.find(s => s.elements && s.elements[0] === el);
+    if (existing) existing.revert();
 
-            split.chars.forEach((char) => {
-              char.style.display    = "inline-block";
-              char.style.willChange = "transform, opacity";
-            });
+    const split = new SplitType(el, { types: "chars" });
+    splitInstances.push(split);
 
-            gsap.set(split.chars, { y: 80, opacity: 0 });
+    if (!split.chars || split.chars.length === 0) return; /* safety */
 
-            const isHeader = !!el.closest(".headerSection");
+    split.chars.forEach((char) => {
+      char.style.display    = "inline-block";
+      char.style.willChange = "transform, opacity";
+      char.style.overflow   = "visible";
+    });
 
-            function playHeading() {
-              gsap.fromTo(split.chars,
-                { y: 80, opacity: 0 },
-                { y: 0, opacity: 1, stagger: 0.025, duration: 0.75, ease: "power4.out", overwrite: true }
-              );
-            }
-            function reverseHeading() {
-              gsap.to(split.chars, {
-                y: -50, opacity: 0, stagger: 0.015, duration: 0.45, ease: "power3.in", overwrite: true,
-              });
-            }
+    gsap.set(split.chars, { y: 80, opacity: 0 });
 
-            if (isHeader) {
-              gsap.delayedCall(0.2, playHeading);
-              ScrollTrigger.create({
-                trigger: el, start: "top top", end: "bottom top",
-                onLeave: reverseHeading, onEnterBack: playHeading,
-              });
-            } else {
-              ScrollTrigger.create({
-                trigger : el,
-                start   : isMobile() ? "top 95%" : "top 85%", /* ← lower threshold on mobile */
-                end     : "bottom top",
-                /* ── on mobile only play/reverse, no onLeave reverse ──
-                  Fast mobile scroll triggers onLeave immediately which
-                  cancels the animation before it's visible             */
-                onEnter     : playHeading,
-                onEnterBack : playHeading,
-                onLeave     : isMobile() ? null : reverseHeading,
-                onLeaveBack : isMobile() ? null : reverseHeading,
-              });
-            }
-          });
+    const isHeader = !!el.closest(".headerSection");
+
+    function playHeading() {
+      if (!split.chars || split.chars.length === 0) return;
+      gsap.fromTo(split.chars,
+        { y: 80, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.025, duration: 0.75, ease: "power4.out", overwrite: true }
+      );
+    }
+    function reverseHeading() {
+      if (!split.chars || split.chars.length === 0) return;
+      gsap.to(split.chars, {
+        y: -50, opacity: 0, stagger: 0.015, duration: 0.45, ease: "power3.in", overwrite: true,
+      });
+    }
+
+    if (isHeader) {
+      gsap.delayedCall(0.2, playHeading);
+      ScrollTrigger.create({
+        trigger: el, start: "top top", end: "bottom top",
+        onLeave: reverseHeading, onEnterBack: playHeading,
+      });
+    } else {
+      ScrollTrigger.create({
+        trigger : el,
+        start   : isMobile() ? "top 98%" : "top 85%",
+        end     : "bottom top",
+        onEnter     : playHeading,
+        onEnterBack : playHeading,
+        onLeave     : isMobile() ? null : reverseHeading,
+        onLeaveBack : isMobile() ? null : reverseHeading,
+      });
+    }
+  });
+
+  ScrollTrigger.refresh(); /* recalculate all trigger positions after split */
+}
+
+/* ── Wait for fonts + layout before splitting ── */
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(() => {
+    gsap.delayedCall(0.2, initHeadings);
+  });
+} else {
+  gsap.delayedCall(0.5, initHeadings);
+}
 
         /* ── Wave letters ── */
         gsap.to(".wave-letter", {
@@ -460,25 +482,17 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
 
         /* ── Resize ── */
         let resizeTimer;
-        window.addEventListener("resize", () => {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(() => {
-            splitInstances.forEach((s) => s.revert());
-            splitInstances.length = 0;
-            allHeadings.forEach((el) => {
-              const split = new SplitType(el, { types: "chars" });
-              splitInstances.push(split);
-              split.chars.forEach((c) => {
-                c.style.display    = "inline-block";
-                c.style.willChange = "transform, opacity";
-              });
-              gsap.set(split.chars, { y: 0, opacity: 1 });
-            });
-            rectsReady = false; /* force re-capture after refresh */
-            lenis.resize();
-            ScrollTrigger.refresh();
-          }, 250);
-        });
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    splitInstances.forEach((s) => s.revert());
+    splitInstances.length = 0;
+    initHeadings();
+    rectsReady = false;
+    lenis.resize();
+    ScrollTrigger.refresh();
+  }, 250);
+});
 
       }); // split-type
     }); // lenis
