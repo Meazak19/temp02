@@ -323,7 +323,7 @@ function initHeadings() {
     function reverseHeading() {
       if (!split.chars || split.chars.length === 0) return;
       gsap.to(split.chars, {
-        y: -50, opacity: 0, stagger: 0.015, duration: 0.45, ease: "power3.in", overwrite: true,
+        y: -50, opacity: 0, stagger: 0.015, duration: 0.8, ease: "power3.in", overwrite: true,
       });
     }
 
@@ -336,8 +336,9 @@ function initHeadings() {
     } else {
       ScrollTrigger.create({
         trigger : el,
-        start   : isMobile() ? "top 98%" : "top 85%",
-        end     : "bottom top",
+        start   : isMobile() ? "top 90%" : "top 75%",
+        end     : "bottom 10%",
+        scrub   : 2.5,
         onEnter     : playHeading,
         onEnterBack : playHeading,
         onLeave     : isMobile() ? null : reverseHeading,
