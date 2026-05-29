@@ -88,6 +88,9 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
           borderRadius   : "0px",
           opacity        : "0",
           visibility     : "hidden",
+          webkitBackfaceVisibility: "hidden",  // ← prevents repaint on iOS
+  backfaceVisibility      : "hidden",
+  webkitTransform         : "translateZ(0)", // ← force GPU layer on old iOS
         });
         document.body.appendChild(flyImg);
 
@@ -153,7 +156,7 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js", fu
           trigger : ".paymentSection",
           start   : isFirstMobile() ? "top 52%" : "top 96%",
           end     : isFirstMobile() ? "top 10%" : "top 35%",
-          scrub   : isFirstMobile() ? 1 : 2.9,
+          scrub   : isFirstMobile() ? true : 2.9,
 
               onEnter() {
                 flyActive = true;
