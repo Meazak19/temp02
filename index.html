@@ -37,7 +37,7 @@
 
   .item {
     width: 200px;
-      height: 500px;
+      height: 400px;
       position: fixed;
       top: 0; left: 0;
       transform: scale(0);
@@ -820,6 +820,11 @@ body {
   }
 
   @media (max-width: 575px) { 
+
+     .item svg{
+  width: 20px;
+  height: 20px;
+ } 
 .page-wrapper .headerImg img {
   margin-top: 50px;
 }
@@ -919,7 +924,14 @@ body {
   @media (max-width: 480px) {
      
   }
- 
+ .fish svg * {
+  fill: #1566c1;
+  opacity: 0.8;
+ }
+
+ .item {
+  z-index: 2;
+ }
  
 
 </style>
@@ -1974,6 +1986,32 @@ window.addEventListener("mousemove", (e) => {
     }
     counter += 1
   }
+
+  window.addEventListener("click", (e) => {
+  updatePositionAndCalculateVelocity(e);
+  createAndRunAnimation(index, vel.x > 0 ? 8 : vel.x < 0 ? -8 : 0);
+  if (index + 1 === items.length) {
+    index = 0;
+  } else {
+    index += 1;
+  }
+});
+
+window.addEventListener("touchstart", (e) => {
+  const touch = e.touches[0];
+  updatePositionAndCalculateVelocity({
+    clientX: touch.clientX,
+    clientY: touch.clientY,
+  });
+  createAndRunAnimation(index, 0); // no rotation on tap — no velocity direction
+  if (index + 1 === items.length) {
+    index = 0;
+  } else {
+    index += 1;
+  }
+});
+
+
 });
 </script>
 
