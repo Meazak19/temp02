@@ -7,932 +7,628 @@
  
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Freckle+Face&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=DM+Serif+Display:ital@0;1&amp;family=Urbanist:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
 
 <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Ephesis&amp;family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet">
 
 <!-- Bs 4 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> 
 
-<!-- Owl-Carousel -->
+<!-- Owl-Carousel --> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"> 
 
 <!-- Animate Css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/2.1.1/animate.min.css"> 
  
 
-
-
 <style type="text/css">
 
-  /* 
-    font-family: "Freckle Face", system-ui; 
-    font-family: "Urbanist", sans-serif; 1 para
 
-    https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1778973187phpcmEemY.jpg
-  */  
-  /* Smooth fly animation */
+/* 
 
-  .item {
-    width: 200px;
-      height: 400px;
-      position: fixed;
-      top: 0; left: 0;
-      transform: scale(0);
-      pointer-events: none;
-      background-color: unset !important;
-}
- 
- 
-
- 
-  .headerImg img,
-.step-icon-wrap img {
-  transition: none !important;
-}
- 
+  font-family: "DM Sans", sans-serif; 
+  font-family: "Urbanist", sans-serif; 
+  font-family: "DM Serif Display", serif; 
 
 
-  .headerImg img{
-    /* transform: scale(1.0) translateY(80px);  */
-/* backface-visibility: hidden; */
-  will-change: transform, scale, opacity;
-}
- 
-.step-card,
-.step-card img {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  will-change: transform;
-}
+*/  
 
-body {
-  overflow-x: hidden;
-}
-
-/* Prevent repaint lag */
-
-.step-card {
-  contain: layout paint;
-}
-.headerContent span.word {
-  display: inline-block;
-  will-change: transform;
-}
-.wave-letter{
-  display:inline-block;
-  will-change:transform;
-}
-.wave-letter{
-  display:inline-block;
-  will-change:transform;
-  backface-visibility:hidden;
-  transform-style:preserve-3d;
-}
-
-/* GSAP FIX */
-
-.aboutSection,
-.aboutSection * {
-  overflow: visible !important;
-}
-
-.aboutContent h2,
-.aboutContent p,
-.aboutContent .orderBtn {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Prevent transform conflicts */
-
-.aboutContent h2,
-.aboutContent p {
-  animation: none !important;
-}
-.headerImg img,
-.step-image,
-.step-icon-wrap img {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  will-change: transform, opacity;
-}
-/* Smooth rendering */
-
-.step-icon-wrap img {  
-  display: block;
-  visibility: visible;     /* let GSAP autoAlpha control this */
-}
-
-.aboutContent h2,
-.aboutContent p,
-.aboutContent .orderBtn {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-  body .page-wrapper { 
-      font-family: "Montserrat", sans-serif; 
-      color: #6c6a6a; 
-      line-height: 24px; 
-      overflow: hidden; 
-      scroll-behavior: smooth; 
-      --blue : #035fbf;  
-      --yellow : #feb400; 
-      --white: #fff; 
-      --black: #000; 
-      --gray: #5a5a5a; 
-      background-color: #ffffff; 
-      position: relative;
-      }  
-     .page-wrapper p {
-      margin-bottom: 25px;
+    body .page-wrapper { 
+    font-family: "DM Sans", sans-serif; 
+    color: #6c6a6a; 
+    line-height: 24px; 
+    overflow-x: hidden; 
+    scroll-behavior: smooth; 
+    background-color: #1c1c1c;
+    } 
+    
+   .page-wrapper p {
+    margin-bottom: 25px;
     font-size: 25px;
-    color: #5b5a59;
-    letter-spacing: 0px;
+    font-family: "DM Sans", sans-serif;
+    color: #fff;
+    letter-spacing: 1px;
     line-height: 1.5;
-    font-weight: 400;
-    font-family: "Montserrat", sans-serif;
-     }
-  
-     .page-wrapper p > a {
-     color: inherit;
-     }
-     .page-wrapper h1, .page-wrapper h2, .page-wrapper h3, .page-wrapper h4, .page-wrapper h5, .page-wrapper h6 {
-     line-height: 1.3;
-     font-family: "Freckle Face", system-ui;
-     }
-     .page-wrapper .row {
-     margin: 0 -15px!important;
-     }
-     
-     .page-wrapper section {
-     position: relative;
-     z-index: 1;
+   }
+
+   .page-wrapper p > a {
+   color: inherit;
+   }
+   .page-wrapper h1, .page-wrapper h2, .page-wrapper h3, .page-wrapper h4, .page-wrapper h5, .page-wrapper h6 {
+   line-height: 1.3;
+   font-family: "DM Serif Display", serif;
+   }
+   .page-wrapper .row {
+   margin: 0 -15px!important;
+   }
+   .page-wrapper .bg-dark {
+   background-color: #fc673f!important;
+   }
+
+   .page-wrapper .bg-primary {
+   background-color: #241e5e!important;
+   }
+   .page-wrapper .bg-light {
+   background-color: #f1f1f1!important;
+   }
+   .page-wrapper section {
+   position: relative;
+   z-index: 1;
+   background-size: cover;
+   background-position: center center;
+   background-repeat: no-repeat;
+   }   
+ 
+
+   .page-wrapper .overlay{
+      content: "";
+    background: rgb(0 0 0 / 58%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+   }
+
+   .page-wrapper h1 { 
+    color: #fff;
+    font-size: 70px;
+    text-transform: uppercase;
+    line-height: 1;
+   }
+   .page-wrapper h1 span{ 
+        font-size: 150px;
+   }
+   .page-wrapper h2 {
+    
+   }
+   .page-wrapper h3 {
+    
+    }
+   .page-wrapper h4 {
+    
+   }
+   .page-wrapper h5 {
+    
+   }
+   .page-wrapper h6 {
+    
+   }
+ 
+   .page-wrapper .headerSection {
+     padding: 100px 0;
+    background: #ca0000;
+    z-index: 2;
+    }
+    
+   .page-wrapper .headerSection::after {
+    background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png');
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+   }
+    .page-wrapper .chowmeinImgBg {
+     background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php75g39d.jpg');
+     /* padding:125px 50px; */
      background-size: cover;
-     background-position: center center;
-     background-repeat: no-repeat;
-     }   
-     
-  
-     .page-wrapper .overlay{
-        content: "";
-      background: rgb(0 0 0 / 58%);
+     background-position: center;
+     margin-top: 100px;
+     position: relative;
+    }
+    .page-wrapper .chowmeinImgBg::after {
+      content: '';
       position: absolute;
-      width: 100%;
-      height: 100%;
       top: 0;
       left: 0;
-      z-index: -1;
-     } 
-     .page-wrapper h1 {
-      font-size: 190px;
-    color: #fff;
-    letter-spacing: 0;
-    font-weight: 700;
-    text-align: left;
-    line-height: 1;
-    margin-bottom: 0;
-    z-index: 2;
-    position: relative;
-    filter: drop-shadow(2px 4px 1px black);
-    /* transform: rotate(-15deg); */
-    margin-bottom: 125px;
-     }
-     .page-wrapper h1 span{ 
-      font-size: 75px;
-    display: block !important;
-    color: #feb400;
-     }
-     .page-wrapper h2{ 
-      color: #1566c1;
-    font-size: 150px;
-    font-weight: 100;
-    filter: drop-shadow(2px 2px 0px #256cbe87);
-    margin-bottom: 40px;
-    line-height: 1;
-     }
-     .page-wrapper h3{  
-      font-family: "Poppins", sans-serif;
-    font-size: 50px;
-    color: #d42a0b;
-    font-weight: 700;
-     }
-     .page-wrapper .headerSection {
-      background: #035699;
-      padding: 100px 0;
-     }
-     .page-wrapper .headerSection video {
-      margin: 0 auto;
-    display: block;
-    position: absolute;
-    opacity: 0.05;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-     }
-     .page-wrapper .headerSection::after { 
-      content: '';
-      position: absolute;
-      right: 0;
-      bottom: 0;
       width: 100%;
       height: 100%;
-      background-image: url('https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1778161752phpSbSW7c.png');
-      background-position: right;
-    background-repeat: no-repeat;
-    z-index: -1;
-    filter: brightness(0) saturate(100%) invert(71%) sepia(80%) saturate(3122%) hue-rotate(5deg) brightness(111%) contrast(101%);
-    background-size: cover;
-    z-index: 1;
-     }
-
-     
-     .page-wrapper .orderBtn {
-      display: inline-block;
-    background: #feb400;
-    font-size: 25px;
-    padding: 15px 25px;
-    color: #024288;
-    font-weight: 700;
-    border-radius: 10px;
-     }
-     .page-wrapper .headerContent .orderBtn { 
-      transform: translateX(80px);
-      margin-bottom: 60px;
-     }
-     .page-wrapper .arrowImg {
-      position: absolute;
-    bottom: 95px;
-    right: 0;
-    width: 300px;
-    z-index: 2;
-     }
-     .page-wrapper .headerImg img {
-      transform: scale(1.0);
-      transform-origin: bottom left;
-      z-index: 2;
-      position: relative; 
-     }
-
-
-  .step-card {
-    background: linear-gradient(145deg, #1565c0, #1976d2);
-    border-radius: 18px;
-    padding: 24px 20px 22px;
-    max-width: 400px;
-    width: 100%;
-    position: relative;
-    cursor: pointer;
-    transform: translateY(30px);
-    opacity: 0;
-    animation: slideUp 0.6s ease forwards;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    filter: drop-shadow(2px 10px 16px #00000078);
-  }
-  .step-card:nth-child(1) { animation-delay: 0.1s; }
-  .step-card:nth-child(2) { animation-delay: 0.3s; }
-  .step-card:nth-child(3) { animation-delay: 0.5s; }
-  .step-card:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 14px 36px rgba(21,101,192,0.35);
-  }
-
-  @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-
-
-  .step-num {
-    background: #feb701;
-    color: #144060;
-    font-size: 30px;
-    font-weight: 700;
-    width: 75px;
-    height: 75px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-  }
-
-  /* Allow hero image to overflow below the header section */
-.page-wrapper {
-  overflow: visible;          /* was: overflow: hidden — this was clipping */
-}
-/* In your existing CSS — reduce the scale so it fits */
-.page-wrapper .headerImg img {
-  /* transform       : scale(1.05) rotate(-5deg);    */
-  transform-origin: bottom center;
-}
-
-@media (max-width: 767px) {
-  .page-wrapper .headerImg img {
-    transform: scale(1) rotate(0deg);
-    margin-top: 20px;
-  }
-}
-.headerSection {
-  overflow: visible;
-}
-
-/* GSAP pin creates this wrapper — must allow overflow */
-.pin-spacer {
-  overflow: visible !important;
-}
- .step-icon-wrap.one {
-  padding: 10px;
- }
-  .step-icon-wrap {
-    width: 150px;
-    height: 150px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin: 8px auto 18px;
-    margin-right: unset;
-    padding: 30px;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-  }
-  .step-card:hover .step-icon-wrap { animation: wiggle 0.5s ease; }
-
-  @keyframes wiggle {
-    0%   { transform: rotate(0deg); }
-    20%  { transform: rotate(-10deg); }
-    40%  { transform: rotate(10deg); }
-    60%  { transform: rotate(-6deg); }
-    80%  { transform: rotate(4deg); }
-    100% { transform: rotate(0deg); }
-  }
-
-  .step-icon-wrap svg { width: 38px; height: 38px; }
-  .step-title {     color: #fff;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    margin-top: 60px; }
-  .step-desc  {     color: #bbdefb;
-    font-size: 16px;
-    line-height: 1.55; }
-     
-    .page-wrapper .paymentSection {
-      padding: 100px 0;
-    }
-    .page-wrapper h2 .spanOne {
-      display: block !important;
-    font-size: 70px;
-    color: #feb400;
-    }
-    .page-wrapper h2 .spanTwo {
-      color: #1566c1;
-    }
-    .page-wrapper .aboutContent {
-      text-align: center;
-    }
-    .page-wrapper .mask {
-      -webkit-mask-image: url(https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1777992050php1Uyzxg.png);
-        mask-image: url(https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1777992050php1Uyzxg.png);
-        -webkit-mask-repeat: no-repeat;
-        mask-repeat: no-repeat;
-        -webkit-mask-size: contain;
-        -webkit-mask-position: center; 
-    }
-.page-wrapper .bannerSection h2 {
-  font-size: 105px;
-    font-weight: 100;
-    line-height: 0.95;
-}
-.page-wrapper .bannerRow::after {
-      content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 52%;
-    background-color: red;
-    z-index: -1;
-    background: linear-gradient(0deg, rgb(255 169 1) 0%, rgb(255 228 0) 100%);
-    border-radius: 25px;
-}
-.page-wrapper .bannerRow { 
-    position: relative;
-}
-.page-wrapper .wrapsImg {
-  height: 100%;
-    max-height: 750px;
-    left: 50px;
-    position: relative;
-}
-.page-wrapper .bannerSection {
-    padding: 100px 0;
-}
-.page-wrapper .rightTxtContent {
-    text-align: center;
-}
-.page-wrapper .bannerSection h2 .spanOne {
-        color: #1566c1;
-        font-size: 130px;
-    font-weight: 100;
-}
-.page-wrapper .bannerSection h2 .spanThree {
-        font-size: 90px;
-}
-.page-wrapper .rightTxtContent p {
-  padding-top: 50px;
-}
-.page-wrapper .textYellow {
-        color: #feb403 !important;
-}
-.page-wrapper .menuSection h2 {
-        font-size: 40px;
-    text-align: center;
-    line-height: 0.9;
-}
-.page-wrapper .menuSection h2 .two{ 
-        display: block !important;
-    font-size: 110px;
-    margin-top: 10px;
-}
-.page-wrapper .menuSection h2 .textThree{ 
-        font-size: 75px;
-}
-.page-wrapper .galleryGrid {
-            display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 20px;
-        width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.page-wrapper .galleryParent img {
-        border-radius: 20px;
-    width: 100%;
-    height: 100%;
-    min-height: 300px;
-    object-fit: cover;
-}
-.page-wrapper .galleryGrid.two {
-        grid-template-columns: 1fr 1.5fr;
-        padding-top: 20px;
-}
-.page-wrapper .menuSection {
-    padding: 100px 0;
-}
-.page-wrapper .manImg {
-  position: absolute;
-    bottom: 100px;
-    width: 25%;
-    left: 0px;
-}
-.page-wrapper .friesImg {
-  position: absolute;
-    right: 0;
-    width: 28%;
-    top: 0;
-    transform: rotate(-25deg) translateX(150px);
-}
-.page-wrapper .waveBg::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: url('https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1779201485phppxLeb1.png');
-  width: 100%;
-    height: 100%;
-    opacity: 0.2;
-}
-
-[animate] {
-  /* overflow: hidden; */
-}
-
-.headingOne .char {
-  display: inline-block;
-  will-change: transform;
-}
-.headerContent {
-  position: relative;
-  z-index: 4;
-}
-
-   @media(min-width:1200px){
-          .page-wrapper .container{
-              max-width: 1140px;
-          }
-      }
-
-
-   @media(min-width:1500px){
-          .page-wrapper .container{
-              max-width: 1440px;
-          }
-      }
-
-/* =============================================
-     RESPONSIVE BREAKPOINTS 
-     ============================================= */ 
-
-  @media (max-width: 1499px) {
-    .page-wrapper h1 {
-            font-size: 130px;
-    text-align: center;
-    margin-bottom: 100px;
-    }
-    .page-wrapper h1 span {
-        font-size: 55px;
-    }
-    .page-wrapper .arrowImg {
-                           bottom: 105px;
-        right: 30px;
-        width: 190px;
-    }
-    .page-wrapper .headerContent .orderBtn {
-    transform: translateX(110px);
-    margin-bottom: 60px;
-}
-
-/* Payment / Step Cards */
-.step-card { padding: 20px 16px 18px; }
-  .step-num { width: 55px; height: 55px; font-size: 24px; border-radius: 8px; }
-  .step-icon-wrap { width: 115px; height: 115px; padding: 22px; }
-  .step-title { font-size: 17px; margin-top: 40px; }
-  .step-desc { font-size: 14px; }
-
-/* About */
-.page-wrapper .aboutSection h2,
-  .page-wrapper h2 { font-size: 120px; }
-  .page-wrapper h2 .spanOne { font-size: 58px; }
-  .page-wrapper p { font-size: 20px; }
-
-  /* Banner */
-  .page-wrapper .bannerSection h2 { font-size: 73px; }
-  .page-wrapper .bannerSection h2 .spanOne { font-size: 100px; }
-  .page-wrapper .bannerSection h2 .spanThree { font-size: 64px; }
-  .page-wrapper .wrapsImg { max-height: 565px; left: 30px; }
-  .page-wrapper .rightTxtContent p {
-    padding-top: 35px;
-}
-
-  /* Menu */
-  .page-wrapper .menuSection {
-    padding: 0px 0 100px;
-}
-  .page-wrapper .menuSection h2 { font-size: 40px; }
-  .page-wrapper .menuSection h2 .two { font-size: 110px; }
-  .page-wrapper .menuSection h2 .textThree { font-size: 78px; }
-  .page-wrapper .galleryGrid { width: 90%; }
-  .page-wrapper .manImg {         width: 32%;
-        bottom: 80px;
-        z-index: -1; }
-  .page-wrapper .friesImg { width: 30%; }
-
-
-  }
-
-  @media (max-width: 1199px) {
-    .page-wrapper .headerSection::after {
-            background-size: 100% 100%;
-    }
-        .page-wrapper h1 span {
-        font-size: 45px;
-        margin-top: 10px;
-    }
-    .page-wrapper h1 {
-        font-size: 110px;
-    }
-    .page-wrapper .arrowImg {
-        bottom: 115px; 
-        width: 170px;
+      background-color: #000;
+      z-index: 0;
+      opacity: 0.6;
     }
     .page-wrapper .orderBtn {
-            font-size: 22px;
-    padding: 12px 20px;
+          background: #fff;
+    padding: 15px 20px;
+    font-size: 28px;
+    color: #000;
+    border-radius: 50px;
+    font-family: "DM Serif Display", serif;
+    letter-spacing: 1px;
+    display: inline-block;
     }
-    .page-wrapper .headerSection {
-        padding: 70px 0;
+    .page-wrapper .chowmeinImgBg p {
+          font-size: 245px;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "DM Serif Display", serif;
+    line-height: 1;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
     }
-
-    /* Payment / Step Cards */
-  .step-card { padding: 18px 14px 16px; }
-  .step-num { width: 48px; height: 48px; font-size: 20px; }
-  .step-icon-wrap { width: 95px; height: 95px; padding: 16px; top: 12px; right: 12px; }
-  .step-title { font-size: 15px; margin-top: 30px; }
-  .step-desc { font-size: 13px; line-height: 1.4; }
-
-  /* About */
-      .page-wrapper .aboutSection h2, .page-wrapper h2 {
-        font-size: 100px;
+    .page-wrapper .chowmeinImg {
+          position: absolute;
+    top: 20%;
+    left: 20%;
+    right: 0;
+    margin: auto;
+    z-index: 1;
+    width: 525px;
+    transform-origin: top;
+    transform: scale(2.3);
     }
-  .page-wrapper h2 { font-size: 90px; }
-  .page-wrapper h2 .spanOne { font-size: 48px; }
-  .page-wrapper p { font-size: 18px; }
-  .page-wrapper .paymentSection { padding: 70px 0; }
-  .page-wrapper .aboutSection { padding: 70px 0; }
-
-  /* Banner */
-  .page-wrapper .bannerSection { padding: 70px 0; }
-  .page-wrapper .bannerSection h2 { font-size: 70px; }
-  .page-wrapper .bannerSection h2 .spanOne { font-size: 90px; }
-  .page-wrapper .rightTxtContent p {
-    padding-top: 30px;
-}
-  .page-wrapper .bannerSection h2 .spanThree { font-size: 58px; }
-  .page-wrapper .wrapsImg { max-height: 520px; left: 20px; }
-
-  /* Menu */
-  .page-wrapper .menuSection { padding: 70px 0; }
-  .page-wrapper .menuSection h2 { font-size: 36px; }
-  .page-wrapper .menuSection h2 .two {         font-size: 100px;
-        margin-top: 5px; }
-  .page-wrapper .menuSection h2 .textThree { font-size: 67px; }
-  .page-wrapper .galleryGrid { width: 95%; }
-  .page-wrapper .galleryParent img { min-height: 255px; }
-  .page-wrapper .manImg {         width: 17%;
-        bottom: unset;
-        left: 20px;
-        top: 0; }
-  .page-wrapper .friesImg { width: 30%; }
-
-  }
-
-  @media (max-width: 991px) {
-        .page-wrapper h1 span {
-        font-size: 42px;
-        margin-top: 10px;
-        font-weight: 100;
+    .page-wrapper .aboutSection {
+           padding: 0px 0 50px;
+    background: #fff;
+    margin-top: 300px;
     }
-        .page-wrapper .arrowImg {
-        bottom: 90px;
-        width: 120px;
+    .page-wrapper .aboutSection .container {
+     background: #fff;
+    padding: 20px 0;
     }
-        .page-wrapper h1 {
-        margin-bottom: 60px;
-        font-size: 90px;
+    .page-wrapper .leftImg img {
+      border-radius: 45px;
+    width: 100%;
     }
-    .page-wrapper .headerContent .orderBtn {
-        transform: translateX(50px);
-        margin-bottom: 30px;
+    .page-wrapper .aboutContent { 
+        position: relative;
+    padding: 15px;
+    text-align: right;
     }
-
-    /* Payment / Step Cards */
-  .step-card { padding: 16px 12px 14px; max-width: 100%; }
-  .step-num { width: 42px; height: 42px; font-size: 18px; border-radius: 7px; }
-  .step-icon-wrap { width: 80px; height: 80px; padding: 12px; top: 10px; right: 10px; }
-  .step-title { font-size: 13px; margin-top: 24px; letter-spacing: 0.3px; }
-  .step-desc { font-size: 12px; line-height: 1.35; }
-  .page-wrapper .paymentSection { padding: 50px 0 25px; }
-
-  /* About */
-      .page-wrapper .aboutSection h2, .page-wrapper h2 {
-        font-size: 73px;
-        margin-bottom: 20px;
-    }
-  .page-wrapper h2 { font-size: 72px; }
-  .page-wrapper h2 .spanOne { font-size: 35px; }
-  .page-wrapper p { font-size: 15px; line-height: 1.6; }
-  .page-wrapper .aboutSection { padding: 50px 0; }
-
-  /* Banner */
-  .page-wrapper .bannerSection { padding: 50px 0; }    
-
-    /* About */
-  .page-wrapper h2 { font-size: 58px; }
-  .page-wrapper h2 .spanOne { font-size: 32px; }
-  .page-wrapper .aboutSection {         padding: 10px 0 40px; }
-  .page-wrapper .aboutContent { padding-bottom: 0px; }
-
-  /* Banner */ 
-  .page-wrapper .bannerSection h2 {         font-size: 46px;
-        line-height: 1;
-        margin-bottom: 0; }
-  .page-wrapper .bannerSection h2 .spanOne { font-size: 62px; }
-  .page-wrapper .bannerSection h2 .spanThree { font-size: 36px; }
-  .page-wrapper .wrapsImg { max-height: 100%; left: 0;         object-fit: contain;
-        object-position: bottom;
-        transform: scale(1.2);
-        transform-origin: bottom;}
-  .page-wrapper .rightTxtContent p {         padding-top: 30px;
-        font-size: 14px; }
-  .page-wrapper .bannerRow::after { height: 55%; }
-
-  /* Menu */
-  .page-wrapper .menuSection { padding: 50px 0; }
-  .page-wrapper .menuSection h2 { font-size: 30px; }
-  .page-wrapper .menuSection h2 .two { font-size: 80px; }
-  .page-wrapper .menuSection h2 .textThree { font-size: 56px; }
-  .page-wrapper .galleryGrid { width: 100%; gap: 12px; }
-  .page-wrapper .galleryParent img { min-height: 200px; border-radius: 14px; }
-  .page-wrapper .manImg {         width: 17%; }
-  .page-wrapper .friesImg {         width: 32%;
-        top: 5%; }
-
-  }
-
-  @media (max-width: 767px) {
-    .page-wrapper .headerImg img {
-    transform: scale(1.0) rotate(0deg);
-    transform-origin: center;
-    margin-top: 40px;
-}
-    .page-wrapper h1 {
-        margin-bottom: 25px;
-        font-size: 80px;
-        transform: rotate(0deg);
-    }
-        .page-wrapper .headerContent .orderBtn {
-        transform: translateX(0px);
-        margin: auto;
-        width: fit-content;
-        display: flex;
-        margin-bottom: 30px;
-        filter: drop-shadow(2px 4px 2px #256cbe87);
-    }
-    .page-wrapper .arrowImg {
-        display: none;
-    }
-
-    /* Payment / Step Cards */
-  .step-card { max-width: 360px; margin: 0 auto; }
-  .page-wrapper .paymentSection { padding: 60px 0; }
-  .step-icon-wrap {         width: 70px;
-        height: 70px;
-        padding: 14px; }
-  .step-title { font-size: 14px; margin-top: 28px; }
-  .step-desc { font-size: 13px; }
-
-  /* About */
-  .page-wrapper h2 { font-size: 58px; }
-  .page-wrapper h2 .spanOne { font-size: 32px; }
-  .page-wrapper .aboutSection {         padding: 10px 0 40px; }
-  .page-wrapper .aboutContent { padding-bottom: 0px; }
-
-  /* Banner */
-  .page-wrapper .bannerSection { padding: 0px 0 40px; }
-  .page-wrapper .bannerSection h2 { font-size: 45px; }
-  .page-wrapper .bannerSection h2 .spanOne { font-size: 60px; }
-  .page-wrapper .bannerSection h2 .spanThree { font-size: 36px; display: block; }
-  .page-wrapper .wrapsImg {         max-height: 340px;
-        transform-origin: bottom center;
-        transform: unset;
-        margin: auto;
-        display: flex;
-        margin-top: 20px; }
-  .page-wrapper .rightTxtContent p { padding-top: 15px; }
-  .page-wrapper .bannerRow::after { height: 100%; }
-.page-wrapper .bannerRow { 
-    display: flex;
-    flex-direction: column-reverse;
-    padding: 50px 15px 0;
-}
-  /* Menu */
-  .page-wrapper .menuSection { padding: 40px 0; }
-      .page-wrapper .menuSection h2 {
-        font-size: 33px;
-        filter: drop-shadow(2px 2px 1px #256cbe87);
-        max-width: 80%;
-        margin: auto;
-        margin-bottom: 30px;
-    }
-  .page-wrapper .menuSection h2 .two {
-            font-size: 33px;
-        display: inline-block;
-  }
-  .page-wrapper .menuSection h2 .textThree { font-size: 33px; }
-  .page-wrapper .galleryGrid,
-  .page-wrapper .galleryGrid.two { width: 100%; gap: 10px; }
-  .page-wrapper .galleryParent img { min-height: 180px; border-radius: 12px; }
-  .page-wrapper .friesImg {
-            transform: rotate(-25deg) translateX(110px); width: 30%;
-  }
-
-  /* Order button */
-  .page-wrapper .orderBtn { font-size: 18px; padding: 10px 20px; }
-
-  }
-
-  @media (max-width: 575px) { 
-
-     .item svg{
-  width: 20px;
-  height: 20px;
- } 
-.page-wrapper .headerImg img {
-  margin-top: 50px;
-}
-    .step-icon-wrap.one {
-      padding: 5px;
-    }
-.page-wrapper h1 {
-    font-size: 40px;
-            filter: drop-shadow(2px 2px 4px #000);
-}
-.page-wrapper h1 br{
-    display: none;
-}
-    .page-wrapper h1 span {
-        font-size: 32px; 
-    }
-        .page-wrapper .orderBtn {
-        font-size: 16px;
-        padding: 5px 15px;
-        border-radius: 5px;
-    }
-
-
-  /* Payment / Step Cards — stack */
-  .page-wrapper .paymentSection .col-lg-4,
-  .page-wrapper .paymentSection .col-md-6 { width: 100%; }
-  .step-card { max-width: 300px; }
-  .step-icon-wrap { width: 80px; height: 80px; padding: 12px; }
-  .step-title { font-size: 13px; margin-top: 22px; }
-  .step-desc { font-size: 12px; }
-
-  /* About — stack */
-  .page-wrapper .aboutSection h2, .page-wrapper h2 {
-    font-size: 38px;
-  }
-  .page-wrapper .aboutSection .col-lg-6,
-  .page-wrapper .aboutSection .col-md-6 { width: 100%; }
-  .page-wrapper h2 { font-size: 38px; }
-  .page-wrapper h2 .spanOne { font-size: 30px; }
-  .page-wrapper p { font-size: 15px; }
-  .page-wrapper .aboutContent { padding-bottom: 20px; }
-
-  /* Banner — stack */
-  .page-wrapper .bannerSection .col-lg-6,
-  .page-wrapper .bannerSection .col-md-6 { width: 100%; }
-  .page-wrapper .bannerSection h2 { font-size: 36px; }
-  .page-wrapper .bannerSection h2 .spanOne { font-size: 38px; }
-  .page-wrapper .bannerSection h2 .spanThree {         font-size: 35px;
-        margin-top: 2px; }
-  .page-wrapper .wrapsImg { max-height: 280px; left: 0; width: 100%; }
-  .page-wrapper .bannerRow::after {         height: 100%;
-        width: 96%;
-        left: 0;
-        right: 0;
-        margin: auto; }
-  .page-wrapper .rightTxtContent p { padding-top: 12px; }
-  .page-wrapper .bannerRow {
-            padding: 25px 5px 0;
-  }
-
-  /* Menu — stack grid to single column */
-  .page-wrapper .menuSection .col-lg-6,
-  .page-wrapper .menuSection .col-md-6 { width: 100%; }
-  .page-wrapper .menuSection h2 {         font-size: 30px;
-        line-height: 1.2; }
-  .page-wrapper .menuSection h2 .two {         font-size: 30px;
-        margin-top: 0; }
-  .page-wrapper .menuSection h2 .textThree { font-size: 30px; }
-  .page-wrapper .galleryGrid,
-  .page-wrapper .galleryGrid.two {         grid-template-columns: 1fr;
-        gap: 10px;
-        justify-items: center;
-        justify-content: center; }
-  .page-wrapper .galleryParent img {         min-height: 200px;
-        height: 100%;
-        border-radius: 10px;
-        max-width: 400px;
-        margin: auto; }
-
-  /* Order button */
-  .page-wrapper .orderBtn { font-size: 15px; padding: 8px 16px; border-radius: 6px; }
-    .page-wrapper .menuSection {
-        padding: 20px 0 50px;
-    }
-        .page-wrapper .friesImg {
-        transform: rotate(-25deg) translateX(40px);
-        width: 23%;
-        opacity: 0.3;
-        top: 0;
-    }
-        .page-wrapper .manImg {
-        width: 25%;
-        opacity: 0.3;
-    }
-  }
-
-  @media (max-width: 480px) {
+     /* .page-wrapper .aboutContent::after {
+    background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png');
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+   } */
+   .page-wrapper .aboutContent h2, .page-wrapper .aboutContent p, .page-wrapper .aboutContent .orderBtn {
+    position: relative;
+    z-index: 1;
+   }
+     .page-wrapper .aboutRight::after {
+       content: '';
+    position: absolute;
+    z-index: 0;
+    background: #af0000;
+    top: -40%;
+    left: 0;
+    width: 100%;
+    height: 140%;
+    border-radius: 450px 20px 20px 20px;
+     }
+     .page-wrapper .aboutRight::before {
+      background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png');
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 0;
+    width: 100%;
+    height: 140%;
+    border-radius: 450px 20px 20px 20px;
+    z-index: 1;
+     }
+     .page-wrapper .aboutContent h2 {
+      font-size: 80px;
+    color: #fff;
+     }
+     .page-wrapper .aboutContent p {
+      font-size: 30px;
+     }
+     .page-wrapper .decorationImg {
+         position: absolute;
+    top: -260px;
+    right: -15px;
+    z-index: 1;
+    width: 250px;
+    border-radius: 0 20px 0 0;
+     }
      
-  }
- .fish svg * {
-  fill: #1566c1;
-  opacity: 0.8;
- }
-
- .item {
-  z-index: 2;
- }
+.page-wrapper .hoverContent {
+       position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 1;
+    transition: all 0.2s linear;
+    z-index: 1;
+    top: 15px;
+}
+.page-wrapper .caroseul-wrapper {
+        background: #000;
+    border-radius: 20px;
+    padding: 30px;
+}
+.page-wrapper .cartImg { 
+    filter: invert(1);
+}
  
+.page-wrapper .hoverContent p {
+      font-size: 40px;
+    text-align: center;
+    line-height: 1;
+    text-transform: capitalize;
+    font-weight: 100;
+    color: #ff0b0b;
+    margin-bottom: 0;
+    font-family: "DM Serif Display", serif;
+}
+.page-wrapper .cartParent {
+        background: #ff0b0b;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 17px;
+}
+.page-wrapper .owl-item.center .hoverContent{
+    transform: scale(1.0);
+    opacity: 1;
+    transition: all 0.2s linear;
+}
+.page-wrapper .owl-item.center .carousel-dish-wrapper::after {
+    transform: scale(1);
+    opacity: 1;
+    border: 5px solid #000000;
+}
+.page-wrapper .owl-item .carousel-dish-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #f7000285;
+    border-radius: 50px;
+    transform: scale(0);
+    opacity: 0;
+    z-index: 0;
+    transition: all 0.2s linear;
+}
+.page-wrapper .owl-carousel .galleryImg {
+    height: 500px;
+    object-fit: cover; 
+    border-radius: 50px;
+    object-fit: cover;
+    /* transform: skew(10deg) scale(1.2); */
+}
+.page-wrapper .carousel-dish-wrapper {
+    
+}
+.page-wrapper .owl-carousel {
+    margin-left: 7%;
+}
+.page-wrapper .menuSection {
+    background-color: #fff;
+    padding-bottom: 100px;
+}
+.page-wrapper .menuSection h2{
+        font-size: 80px;
+    color: #ff0b0b;
+    margin-bottom: 50px;
+}
+
+/* Section Styling */
+        .how-it-works {
+            background-color: #d11212; /* Vibrant red */
+            background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png'); /* Subtle pattern */
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 0 !important;
+        }
+
+        .section-title { 
+            font-weight: bold;
+            font-size: 80px;
+            color: #ffffff;
+            text-align: center;
+            position: absolute;
+            top: 5vh;
+            width: 100%;
+            z-index: 10;
+        }
+
+        /* Image Styling */
+        .image-wrapper {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 65vw; 
+            height: 60vh;
+            z-index: 5;
+            will-change: width, height, left, transform;
+        }
+
+        .image-wrapper img {
+          width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(1.4);
+    transform-origin: right;
+    top: 50px;
+    position: relative;
+        }
+
+        /* Cards Container */
+        .cards-container {
+            position: absolute;
+            top: 55%;
+            right: 2vw;
+            transform: translateY(-50%);
+            width: 65vw;
+            display: flex;
+            justify-content: space-between;
+            visibility: hidden;
+            z-index: 6;
+        }
+
+        /* Individual Card */
+        .step-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 31%;
+            opacity: 0;
+            transform: translateX(100px);
+            will-change: opacity, transform;
+            background-color: #000;
+                padding: 20px;
+    width: 330px;
+    height: 330px;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: 0 0px 10px 5px #ff5722, 0 0 25px rgba(255, 87, 34, 0.9);
+        }
+
+        .icon-circle {
+              background: #ffffff;
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+        }
+
+        .icon-circle:hover {
+            transform: scale(1.05);
+        }
+
+        .icon-circle svg {
+              width: 70px;
+    height: 70px;
+    stroke: #000000;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+        }
+
+        .step-card h3 {
+            color: #fff;
+            font-family: 'Georgia', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .step-card p {
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            padding: 0 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .section-title { font-size: 3.5rem; }
+            .icon-circle { width: 130px; height: 130px; }
+            .icon-circle svg { width: 60px; height: 60px; }
+            .step-card h3 { font-size: 1.5rem; }
+            .step-card p { font-size: 1rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title { font-size: 2.5rem; top: 2vh; }
+            .cards-container { 
+                flex-direction: column; 
+                top: 50%;
+                width: 50vw;
+                height: 70vh;
+                justify-content: center;
+            }
+            .step-card { width: 100%; margin-bottom: 20px; }
+            .icon-circle { width: 100px; height: 100px; margin-bottom: 10px; }
+            .icon-circle svg { width: 45px; height: 45px; }
+            .step-card h3 { font-size: 1.2rem; margin-bottom: 5px; }
+            .step-card p { font-size: 0.9rem; }
+            .image-wrapper { height: 40vh; }
+        }
+        .page-wrapper .footerSection {
+            background-color: #d11212; /* Vibrant red */
+            background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989244phpfZvHgD.jpg'); /* Subtle pattern */
+            padding: 100px 0;
+        }
+        .page-wrapper .footerSection::after {
+     content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: -1;
+    opacity: 0.7;
+        }
+        .page-wrapper .footerContent h2 {
+                color: #ff0b0b;
+    font-size: 80px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+        }
+    /* RESPONSIVE VIEW */
+
+    @media(min-width:1200px){
+        .page-wrapper .container{
+            max-width: 1140px;
+        }
+    }
+
+    @media(min-width:1500px){
+        .page-wrapper .container{
+            max-width: 1440px;
+        }
+    }
+
+
+@media (max-width:1500px) {
+    .page-wrapper h1 { font-size: 60px; }
+    .page-wrapper h1 span { font-size: 120px; }
+    .page-wrapper .aboutContent h2 { font-size: 70px; }
+    .page-wrapper .menuSection h2 { font-size: 70px; }
+    .page-wrapper .footerContent h2 { font-size: 70px; }
+    .page-wrapper p { font-size: 22px; }
+    .page-wrapper .chowmeinImgBg p { font-size: 200px; }
+    .page-wrapper .aboutContent p { font-size: 26px; }
+    .page-wrapper .orderBtn { font-size: 24px; }
+    .page-wrapper .chowmeinImg { width: 460px; }
+    .page-wrapper .owl-carousel .galleryImg { height: 450px; }
+    .section-title { font-size: 70px; }
+    .step-card { width: 300px; height: 300px; }
+    .step-card h3 { font-size: 1.6rem; }
+    .step-card p { font-size: 1rem; }
+    .icon-circle { width: 110px; height: 110px; }
+    .icon-circle svg { width: 60px; height: 60px; }
+    .page-wrapper .decorationImg { width: 220px; }
+}
+
+@media (max-width:1199px) {
+    .page-wrapper h1 { font-size: 50px; }
+    .page-wrapper h1 span { font-size: 100px; }
+    .page-wrapper .aboutContent h2 { font-size: 60px; }
+    .page-wrapper .menuSection h2 { font-size: 60px; }
+    .page-wrapper .footerContent h2 { font-size: 60px; }
+    .page-wrapper p { font-size: 20px; }
+    .page-wrapper .chowmeinImgBg p { font-size: 160px; }
+    .page-wrapper .aboutContent p { font-size: 22px; }
+    .page-wrapper .orderBtn { font-size: 22px; }
+    .page-wrapper .chowmeinImg { width: 390px; }
+    .page-wrapper .owl-carousel .galleryImg { height: 400px; }
+    .section-title { font-size: 60px; }
+    .step-card { width: 270px; height: 270px; }
+    .step-card h3 { font-size: 1.4rem; }
+    .step-card p { font-size: 0.95rem; }
+    .icon-circle { width: 95px; height: 95px; }
+    .icon-circle svg { width: 52px; height: 52px; }
+    .page-wrapper .decorationImg { width: 190px; }
+}
+
+@media (max-width:991px) {
+    .page-wrapper h1 { font-size: 42px; }
+    .page-wrapper h1 span { font-size: 80px; }
+    .page-wrapper .aboutContent h2 { font-size: 50px; }
+    .page-wrapper .menuSection h2 { font-size: 50px; }
+    .page-wrapper .footerContent h2 { font-size: 50px; }
+    .page-wrapper p { font-size: 18px; }
+    .page-wrapper .chowmeinImgBg p { font-size: 120px; }
+    .page-wrapper .aboutContent p { font-size: 18px; }
+    .page-wrapper .orderBtn { font-size: 20px; }
+    .page-wrapper .chowmeinImg { width: 320px; }
+    .page-wrapper .owl-carousel .galleryImg { height: 350px; }
+    .section-title { font-size: 50px; }
+    .step-card { width: 230px; height: 230px; }
+    .step-card h3 { font-size: 1.2rem; }
+    .step-card p { font-size: 0.88rem; }
+    .icon-circle { width: 80px; height: 80px; }
+    .icon-circle svg { width: 44px; height: 44px; }
+    .page-wrapper .decorationImg { width: 160px; }
+}
+
+@media (max-width:767px) {
+    .page-wrapper h1 { font-size: 34px; }
+    .page-wrapper h1 span { font-size: 60px; }
+    .page-wrapper .aboutContent h2 { font-size: 42px; }
+    .page-wrapper .menuSection h2 { font-size: 42px; }
+    .page-wrapper .footerContent h2 { font-size: 42px; }
+    .page-wrapper p { font-size: 16px; }
+    .page-wrapper .chowmeinImgBg p { font-size: 80px; }
+    .page-wrapper .aboutContent p { font-size: 16px; }
+    .page-wrapper .orderBtn { font-size: 18px; }
+    .page-wrapper .chowmeinImg { width: 260px; }
+    .page-wrapper .owl-carousel .galleryImg { height: 300px; }
+    .section-title { font-size: 38px; }
+    .step-card { width: 200px; height: 200px; }
+    .step-card h3 { font-size: 1rem; }
+    .step-card p { font-size: 0.8rem; }
+    .icon-circle { width: 68px; height: 68px; }
+    .icon-circle svg { width: 36px; height: 36px; }
+    .page-wrapper .decorationImg { width: 130px; }
+}
+
+@media (max-width:575px) {
+    .page-wrapper h1 { font-size: 26px; }
+    .page-wrapper h1 span { font-size: 44px; }
+    .page-wrapper .aboutContent h2 { font-size: 32px; }
+    .page-wrapper .menuSection h2 { font-size: 32px; }
+    .page-wrapper .footerContent h2 { font-size: 32px; }
+    .page-wrapper p { font-size: 14px; }
+    .page-wrapper .chowmeinImgBg p { font-size: 52px; }
+    .page-wrapper .aboutContent p { font-size: 14px; }
+    .page-wrapper .orderBtn { font-size: 16px; }
+    .page-wrapper .chowmeinImg { width: 200px; }
+    .page-wrapper .owl-carousel .galleryImg { height: 240px; }
+    .section-title { font-size: 28px; }
+    .step-card { width: 160px; height: 160px; }
+    .step-card h3 { font-size: 0.85rem; }
+    .step-card p { font-size: 0.72rem; }
+    .icon-circle { width: 55px; height: 55px; }
+    .icon-circle svg { width: 28px; height: 28px; }
+    .page-wrapper .decorationImg { width: 100px; }
+}
 
 </style>
 
@@ -945,919 +641,250 @@ body {
     
 
 <div id="page-top-margin"></div>
-  
- <div class="page-wrapper">    
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
 
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
+ <div class="page-wrapper">
 
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-    <div class="item">
-      <div class="fish">
-    
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="60.000000pt" height="30.000000pt" viewBox="0 0 1280.000000 640.000000" 
- preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
-fill="#333" stroke="none">
-<path d="M6455 5500 c-26 -10 -51 -39 -60 -68 -5 -17 0 -32 19 -57 45 -58 24
--101 -30 -60 -31 23 -62 18 -78 -13 -8 -16 -40 -50 -70 -76 -45 -38 -58 -57
--68 -94 -10 -39 -28 -62 -130 -162 -65 -63 -118 -123 -118 -133 0 -10 19 -29
-45 -45 78 -47 50 -75 -36 -36 -68 32 -90 26 -120 -33 -36 -70 -116 -151 -216
--218 -119 -80 -143 -103 -143 -136 0 -14 -7 -32 -15 -39 -8 -7 -15 -18 -15
--25 0 -18 84 -52 200 -80 58 -14 154 -38 213 -54 l108 -28 -78 -16 c-153 -32
--302 -57 -638 -107 -187 -28 -477 -73 -645 -100 -168 -27 -402 -60 -520 -74
--118 -15 -289 -38 -380 -52 -187 -30 -225 -27 -367 25 -116 42 -311 98 -369
-105 -57 7 -171 -13 -226 -40 -38 -17 -68 -60 -73 -100 -4 -37 34 -60 138 -84
-93 -21 167 -47 167 -60 0 -11 -299 -31 -472 -31 -185 0 -299 15 -494 65 -147
-37 -224 74 -394 191 -58 40 -169 108 -245 151 -328 183 -587 285 -879 345
--172 35 -246 37 -287 8 -29 -20 -29 -22 -29 -112 1 -51 1 -172 1 -270 1 -194
-7 -226 53 -256 l27 -18 -34 -20 c-50 -30 -55 -77 -18 -152 15 -31 39 -96 52
--144 21 -77 28 -91 57 -109 36 -22 39 -34 16 -59 -14 -16 -14 -20 0 -48 29
--56 21 -140 -29 -283 -25 -71 -45 -136 -45 -143 0 -8 21 -28 46 -46 l46 -32
--68 -23 c-38 -13 -70 -24 -70 -24 -10 -1 -57 -152 -78 -245 -15 -66 -34 -151
--43 -190 -8 -38 -26 -91 -39 -117 -14 -27 -21 -48 -17 -49 78 -5 311 6 463 22
-166 17 226 29 400 76 113 30 301 88 418 129 117 41 313 104 435 140 122 36
-249 75 282 86 201 69 809 46 1038 -39 l79 -29 -59 -26 c-69 -31 -146 -48 -212
--48 -76 0 -77 -3 -80 -235 -2 -233 8 -299 74 -505 24 -74 47 -152 50 -172 4
--21 13 -43 21 -49 9 -7 12 -20 8 -31 -4 -14 1 -24 15 -34 12 -9 21 -21 21 -29
-0 -21 63 -55 106 -56 65 -3 97 9 361 127 276 123 560 270 748 384 166 102 369
-207 424 219 25 6 93 13 151 16 157 9 714 -45 1304 -128 l159 -23 -36 -24 c-51
--35 -60 -60 -66 -190 -6 -108 -7 -115 -27 -118 -20 -3 -22 -10 -26 -95 -3 -65
--13 -114 -31 -168 -36 -102 -38 -220 -4 -269 12 -19 36 -42 54 -53 30 -17 33
--17 65 -1 77 39 214 149 378 302 96 91 190 180 208 198 l33 34 24 -27 c13 -16
-25 -33 25 -40 0 -6 12 -25 26 -42 52 -62 98 -40 203 99 23 30 60 78 82 105 22
-28 54 81 71 118 29 64 33 68 57 62 14 -4 193 -9 396 -12 410 -6 609 6 1120 68
-221 27 592 82 636 95 14 4 17 -20 21 -224 6 -246 6 -248 67 -314 29 -32 61
--35 107 -10 69 38 297 305 476 558 58 82 112 155 119 161 8 6 147 41 309 77
-162 37 349 82 415 101 130 36 321 75 372 75 45 0 829 201 1015 260 117 38 184
-66 266 113 176 101 247 177 223 240 -17 45 -50 53 -139 33 -63 -15 -85 -16
--120 -7 -23 7 -40 16 -37 21 4 6 10 10 16 10 22 0 202 93 234 121 29 26 35 38
-35 70 0 56 -19 96 -79 161 -79 87 -282 212 -502 309 -140 62 -574 209 -617
-209 -18 0 -96 23 -174 51 -183 66 -246 83 -394 108 -67 11 -168 32 -225 45
--464 112 -633 150 -759 171 -214 35 -629 93 -757 105 -222 20 -632 40 -840 40
--149 0 -267 6 -394 21 -100 11 -193 18 -206 15 -18 -5 -23 -2 -23 12 0 20 -38
-58 -120 119 -30 22 -174 156 -320 298 -361 350 -559 515 -754 629 -99 58 -130
-69 -161 56z"/>
-</g>
-</svg>
-    
-
-  
-</div>
-    </div>
-
-
-  
- 
-  
-  <section class="headerSection">
-
-    <video autoplay="" muted="" loop="" class="video-sec" id="myvideo" style="width: 100%;height: 100%;margin: 0 auto;display: block;">
-      <source src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1779392019phpkvtKKD.mp4" type="video/mp4">
-  </video>
-  
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-12">
-                  <div class="headerContent" animate>
-                      <h1 class="headingOne">
-                          Crispy, <br> Juicy &amp;
-                          <span> Irresistibly Fresh! </span>
-                      </h1>
-                      <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1778164005phpsxuVwm.png" class="img-fluid arrowImg" alt="">
-                      <a href="/order-now" class="orderBtn">
-                          Order Now
-                      </a>
-                  </div>
-              </div>
-              <div class="col-lg-6 col-md-6 col-sm-12 d-flex flex-column justify-content-end">
-                  <div class="headerImg">
-                      <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1777992782phpz3YG8B.png" class="img-fluid" alt="">
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <div class="waveBg">
-    <section class="paymentSection">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="paymentContainer">
-              <div class="step-card">
-                <div class="step-num">1</div>
-                <div class="step-icon-wrap one">
-                  <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1777992782phpz3YG8B.png" class="img-fluid" alt="">
-                </div>
-                <div class="step-title">Pick a dish</div>
-                <div class="step-desc">Choose your favorite dish from <br> our delectable menu.</div>
-              </div>
+<section class="headerSection">
+  <div class="container">
+   <div class="row align-items-center">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="headerContent">
+                <h1>
+                    THE EXPERIENCE TRUE TASTE OF 
+                    <span>
+                        CHINA!
+                    </span>
+                </h1> 
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="paymentContainer mt-sm-0 mt-4">
-              <div class="step-card">
-                <div class="step-num">2</div>
-                <div class="step-icon-wrap">
-                  <img loading="lazy" src="https://assets.touch2success.com/static/f94bc5857391398efebdfc64c2ad4730/img/1749128425phpGy96ZJ.png" class="img-fluid" alt="">
-                </div>
-                <div class="step-title">Make a payment</div>
-                <div class="step-desc">Online payment is simple <br> and convenient.</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="paymentContainer mt-lg-0 mt-4">
-              <div class="step-card">
-                <div class="step-num">3</div>
-                <div class="step-icon-wrap">
-                  <img loading="lazy" src="https://assets.touch2success.com/static/f94bc5857391398efebdfc64c2ad4730/img/1750332935phph94WRo.png" class="img-fluid" alt="">
-                </div>
-                <div class="step-title">Receive your food</div>
-                <div class="step-desc">We will deliver hot food <br> right to your door.</div>
-              </div>
-            </div>
-          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <p>
+                Enjoy the taste of authentic Chinese cuisine from the comfort of your home with (TAKEAWAY NAME} in (TAKEAWAY TOWN}
+            </p>
+            <a href="/order-now" class="orderBtn">
+              Order now
+            </a>
+        </div>
+   </div>
+   <div class="chowmeinImgBg">
+    <p class="">
+      Chowmein
+    </p>
+   </div>
+   <img src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpB5juD9.png" class="img-fluid chowmeinImg" alt="">
+  </div>
+</section>
+
+<section class="aboutSection">
+  <div class="container position-relative">
+    <img class="img-fluid decorationImg" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpbhEjAR.png" alt="">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="leftImg">
+          <img class="img-fluid" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229php3JKj74.jpg" alt="">
         </div>
       </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 aboutRight">
+        <div class="aboutContent">
+          <h2>
+            About Us
+          </h2>
+          <p>
+            Welcome to {TAKEAWAY NAME}, the home of authentic Chinese flavours in {TAKEAWAY TOWN}. Our chefs bring traditional recipes to life with fresh ingredients, bold spices, and timehonoured techniques. Whether you're craving a classic favourite or something new, our menu offers a rich variety of dishes that promise an unforgettable dining experience
+          </p>
+           <a href="/order-now" class="orderBtn">
+              Order now
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menuSection">
+      <div class="container-fluid px-0">
+        <h2 class="text-center">
+            Our Gallery
+        </h2> 
+                    <div class="owl-carousel owl-theme">
+   
+                <div class="item">
+                    <div class="caroseul-wrapper carousel-wrapper-3">
+                        <div class="carousel-dish-wrapper">
+                            <a href="/order-now">
+                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
+                                                            <div class="hoverContent">
+                                                                  <p>
+                                        Pilau Rice
+                                    </p>
+                                    <div class="cartParent">
+                                        <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
+                                    </div>
+                                  
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+                <div class="item">
+                    <div class="caroseul-wrapper carousel-wrapper-3">
+                        <div class="carousel-dish-wrapper">
+                            <a href="/order-now">
+                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
+                                                            <div class="hoverContent">
+                                                                  <p>
+                                        Pilau Rice
+                                    </p>
+                                    <div class="cartParent">
+                                        <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
+                                    </div>
+                                  
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+                <div class="item">
+                    <div class="caroseul-wrapper carousel-wrapper-3">
+                        <div class="carousel-dish-wrapper">
+                            <a href="/order-now">
+                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
+                                                            <div class="hoverContent">
+                                                                  <p>
+                                        Pilau Rice
+                                    </p>
+                                    <div class="cartParent">
+                                        <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
+                                    </div>
+                                  
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+                <div class="item">
+                    <div class="caroseul-wrapper carousel-wrapper-3">
+                        <div class="carousel-dish-wrapper">
+                            <a href="/order-now">
+                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
+                                                            <div class="hoverContent">
+                                                                  <p>
+                                        Pilau Rice
+                                    </p>
+                                    <div class="cartParent">
+                                        <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
+                                    </div>
+                                  
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+                <div class="item">
+                    <div class="caroseul-wrapper carousel-wrapper-3">
+                        <div class="carousel-dish-wrapper">
+                            <a href="/order-now">
+                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
+                                                            <div class="hoverContent">
+                                                                  <p>
+                                        Pilau Rice
+                                    </p>
+                                    <div class="cartParent">
+                                        <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
+                                    </div>
+                                  
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+                <div class="item">
+                    <div class="caroseul-wrapper carousel-wrapper-3">
+                        <div class="carousel-dish-wrapper">
+                            <a href="/order-now">
+                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
+                                                            <div class="hoverContent">
+                                                                  <p>
+                                        Pilau Rice
+                                    </p>
+                                    <div class="cartParent">
+                                        <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
+                                    </div>
+                                  
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+                
+                 
+
+            </div>
+    </div>
+</section>
+
+  <section class="how-it-works">
+    <!-- <img src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989244phpll0sK1.png" class="img-fluid waneImg" alt=""> -->
+        <h2 class="section-title">How it Works?</h2>
+        
+        <div class="image-wrapper" id="spring-roll">
+            <!-- Delicious Asian Spring Rolls image from Pexels -->
+            <img src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230phppXAPGi.png" class="img-fluid" alt="Delicious Spring Rolls">
+        </div>
+        
+        <div class="cards-container">
+            <!-- Card 1 -->
+            <div class="step-card" id="card-1">
+                <div class="icon-circle">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                </div>
+                <h3>Pick a Favourite</h3>
+                <p>Browse the menu and choose something delicious</p>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="step-card" id="card-2">
+                <div class="icon-circle">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <h3>Secure Checkout</h3>
+                <p>Complete your payment securely and quickly</p>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="step-card" id="card-3">
+                <div class="icon-circle">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                </div>
+                <h3>Fast Delivery</h3>
+                <p>Get your food delivered hot and fresh</p>
+            </div>
+        </div>
     </section>
-  
-    <section class="aboutSection"> 
+
+    <section class="footerSection">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-              <div class="aboutContent">
+            <div class="footerContent text-center">
                 <h2>
-                  Every Bite <span class="spanOne"> <span class="spanTwo"> is a </span> taste of the Coast </span>
+                    Fresh Ingredients, Fiery Woks & Unforgettable Taste
                 </h2>
                 <p>
-                  Welcome to Domain 545 Loaded Burgers and Kebabs, the home of fresh seafood in LEEDS. Our menuis a celebration of the ocean's finest, featuring everything from perfectly grilled fish to classic British fish and chips. Whether you're here for a light bite or a hearty seafood feast, every dish is crafted with care and bursting with flavour.
+                    From sizzling stir-fries to comforting bowls of {dish 1}, every dish is crafted with care to bring you the perfect balance of taste and texture. Dine with us and experience a true taste of China.
                 </p>
                 <a href="/order-now" class="orderBtn">
-                  Order Now
-              </a>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 px-0">
-              <div class="mask">
-                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1764771430phpd5rVJL.jpg" class="img-fluid" alt="">
-              </div>
-            </div>
-          </div>
-        </div> 
-    </section>
-  
-    <section class="bannerSection">
-      <div class="container">
-        <div class="row bannerRow">
-          <div class="col-lg-6 col-md-5 col-sm-12">
-            <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1779199106phpvkcEDL.png" class="img-fluid wrapsImg" alt="">
-          </div>
-          <div class="col-lg-6 col-md-7 col-sm-12">
-            <div class="rightTxtContent">
-              <h2>
-                <span class="spanOne"> Crispy <span class="textYellow"> Fish, </span> </span> 
-                <span class="spanTwo textYellow"> Chunky Chips  </span> <span>&amp;</span>
-                <span class="spanThree"> Loads of Flavour! </span>
-              </h2>
-              <p>
-                At Domain 545 Loaded Burgers and Kebabs, we take pride in serving the freshest seafood in LEEDS. Our chefs use only the finest ingredients to bring you a menu inspired by coastal flavours, from delicate shellfish to crispy golden fish and chips. Join us for a relaxed dining experience and taste the true essence of the sea
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  
-    <section class="menuSection">
-  
-      <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1779199668phpAdu9Bc.png" class="img-fluid manImg" alt="">
-      <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1779199668php5KbU4T.png" class="img-fluid friesImg" alt="">
-  
-        <div class="container">
-            <h2>
-                Freshly Caught, <span class="textYellow">Expertly</span> 
-                <span class="textYellow two"> Cooked -</span> 
-                <span class="textThree">Just for you!</span>
-            </h2>
-            <div class="galleryGrid">
-                <div class="galleryParent">
-                    <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1779197675phpwA95GM.png" class="img-fluid" alt="">
-                </div>
-                <div class="galleryParent">
-                    <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1779197675phpwA95GM.png" class="img-fluid" alt="">
-                </div>
-            </div>
-            <div class="galleryGrid two">
-                <div class="galleryParent">
-                    <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1779197675phpwA95GM.png" class="img-fluid" alt="">
-                </div>
-                <div class="galleryParent">
-                    <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1779197675phpwA95GM.png" class="img-fluid" alt="">
-                </div>
+                    Order now
+                </a>
             </div>
         </div>
     </section>
-  </div>
 
 </div>
 
@@ -1892,7 +919,46 @@ fill="#333" stroke="none">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 
 
- <script>  
+ <script> 
+
+  var $owl = $('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 20,
+    nav: false,
+    dots: false,
+    autoplay: false,
+    center: false,
+    autoplayTimeout: 4000,
+    smartSpeed: 2000,
+    responsive: {
+      0:   { items: 1 },
+      576: { items: 2, center: false },
+      768: { items: 3 },
+      992: { items: 3.5 }
+    }
+  });
+
+  function setActiveCard() {
+    $('.owl-carousel .owl-item .slider-wrapper').removeClass('active');
+    var $visibleItems = $('.owl-carousel .owl-item.active');
+    $visibleItems.eq(0).find('.slider-wrapper').addClass('active');
+  }
+
+  $owl.on('initialized.owl.carousel translated.owl.carousel', function () {
+    setActiveCard();
+  });
+
+  setActiveCard();
+
+  // On hover: remove active from 2nd card
+  // On mouse leave: restore active to 2nd card
+  $(document).on('mouseenter', '.owl-item .slider-wrapper', function () {
+    $('.owl-carousel .owl-item .slider-wrapper').removeClass('active');
+  });
+
+  $(document).on('mouseleave', '.owl-item .slider-wrapper', function () {
+    setActiveCard();
+  });
  
 </script>
 
@@ -1900,135 +966,97 @@ fill="#333" stroke="none">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/Observer.min.js"></script>
- 
+  <script>
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
 
-<script> 
- 
+        // Create the timeline
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".how-it-works",
+                start: "top top",
+                end: "+=2500", // Pin the section for 2500px of scroll
+                pin: true,
+                scrub: 1, // Smooth scrubbing
+                anticipatePin: 1
+            }
+        });
 
-     $('.js-tilt').tilt({
-         maxTilt: 5, 
-         maxGlare: .2,
-perspective: 1000 , // lower = more dramatic 3D effect
-scale: 1.05, 
-speed: 400,         // transition speed (higher = smoother/slower)
-easing: "cubic-bezier(.03,.98,.52,.99)", // animation curve     
-    speed: 800,
-    glare: false, 
- 
-         
-     }); 
+        // Responsive variables for GSAP
+        let isMobile = window.innerWidth <= 768;
+        
+        let targetWidth = isMobile ? "80vw" : "30vw";
+        let targetHeight = isMobile ? "30vh" : "50vh";
+        let targetLeft = isMobile ? "50%" : "17%";
+        let targetTop = isMobile ? "25%" : "55%";
 
-       const items = [...document.getElementsByClassName('item')]
+        // Phase 1: Shrink and move the image
+        tl.to("#spring-roll", {
+            width: targetWidth,
+            height: targetHeight,
+            left: targetLeft,
+            top: targetTop,
+            duration: 2,
+            ease: "power2.inOut"
+        });
 
+        // Phase 2: Make cards container visible
+        tl.set(".cards-container", { visibility: "visible" }, 1);
 
+        // Phase 3: Animate cards in one by one while scrolling
+        tl.to("#card-1", { opacity: 1, x: 0, duration: 1, ease: "power2.out" }, 1.5);
+        tl.to("#card-2", { opacity: 1, x: 0, duration: 1, ease: "power2.out" }, 2.5);
+        tl.to("#card-3", { opacity: 1, x: 0, duration: 1, ease: "power2.out" }, 3.5);
 
-gsap.registerPlugin(Observer);
+        // Handle window resize to update animation targets
+        window.addEventListener('resize', () => {
+            ScrollTrigger.refresh();
+        });
+    </script>
 
-const pos = {
-  x: 0,
-  y: 0,
-};
-
-const vel = {
-  x: 0,
-  y: 0,
-};
-
-const updatePositionAndCalculateVelocity = (e) => {
-  // Mouse X and Y
-  const x = e.clientX;
-  const y = e.clientY;
-
-  // Animate Pos Object and calculate Vel Object Velocity
-  gsap.to(pos, {
-    x: x,
-    y: y,
-    ease: "expo.out",
-    duration: 0.3,
-    onUpdate: () => {
-      vel.x = x - pos.x;
-      vel.y = y - pos.y;
-    },
-  });
-};
-
-const createAndRunAnimation = (index, rotation = -8) => {
-gsap.to(items[index], {
-  ease: "power1.out",
-  keyframes: [
-      {x: pos.x, y:pos.y,rotation:0, duration:0, },
-      {x: pos.x + vel.x*3, y:pos.y + vel.y*3,rotation:rotation, duration:1}
-    ]
-  });
-
-  var tl = gsap.timeline();
-  tl.to(items[index], {scale:0,opacity: 0, duration:0, }); 
-  tl.to(items[index], {scale:1,opacity: 1, duration:0.5, ease: 'power3.out'}); 
-  tl.to(items[index], {scale:0,opacity:0, duration:0.5, ease: 'power3.in'});
-}
-
-let index = 0
-let counter = 0
-
-window.addEventListener("mousemove", (e) => {
-  updatePositionAndCalculateVelocity(e);
-  if(Math.abs(vel.x) > 10 || Math.abs(vel.y) > 10){
-    if(counter > 10) {
-      counter = 0
-      createAndRunAnimation(index, vel.x > 0 ? 8 : vel.x < 0 ? -8 : 0 )
-      if(index +1 === items.length) {
-        index = 0
-      } else {
-        index += 1
-      }
-    }
-    counter += 1
-  }
-
-  window.addEventListener("click", (e) => {
-  updatePositionAndCalculateVelocity(e);
-  createAndRunAnimation(index, vel.x > 0 ? 8 : vel.x < 0 ? -8 : 0);
-  if (index + 1 === items.length) {
-    index = 0;
-  } else {
-    index += 1;
-  }
-});
-
-window.addEventListener("touchstart", (e) => {
-  const touch = e.touches[0];
-  updatePositionAndCalculateVelocity({
-    clientX: touch.clientX,
-    clientY: touch.clientY,
-  });
-  createAndRunAnimation(index, 0); // no rotation on tap — no velocity direction
-  if (index + 1 === items.length) {
-    index = 0;
-  } else {
-    index += 1;
-  }
-});
-
-
-});
+ <script>
+    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js", function() {
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin: 25,
+            nav: false,
+            dots: false,
+            autoplay: false,
+            autoplaytime: 1500,
+            smartSpeed:1000,
+            center: true,
+            stagePadding: 200,
+            responsive:{
+                0:{
+                    items:1,
+                    stagePadding: 25
+                },
+                576:{
+                    items:2,
+                    margin:15,
+                    stagePadding: 25
+                },
+                768:{
+                    items:2,
+                    margin:15,
+                    stagePadding: 200
+                },
+                992:{
+                    items:2,
+                    margin:15
+                },
+                1200:{
+                    items:3
+                }
+            }
+        })
+    });
 </script>
-
-<script>
-
-
-</script>
-
-
-<script src="./script.js">
-
  
-
-
-</script>
  
 
 
 </body>
 </html> 
+ 
+
