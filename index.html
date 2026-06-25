@@ -195,8 +195,10 @@
     padding: 20px 0;
     }
     .page-wrapper .leftImg img {
-      border-radius: 45px;
+          border-radius: 45px;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     }
     .page-wrapper .aboutContent { 
         position: relative;
@@ -510,6 +512,15 @@
     line-height: 1.1;
     margin-bottom: 20px;
         }
+        .page-wrapper .headerRightContent {
+                max-width: 90%;
+                z-index: 2;
+                position: relative;
+        }
+        .page-wrapper .leftImg {
+            width: 100%;
+            height: 100%;
+        }
     /* RESPONSIVE VIEW */
 
     @media(min-width:1200px){
@@ -525,39 +536,73 @@
     }
 
 
-@media (max-width:1500px) {
+@media (max-width:1499px) {
     .page-wrapper h1 { font-size: 60px; }
     .page-wrapper h1 span { font-size: 120px; }
-    .page-wrapper .aboutContent h2 { font-size: 70px; }
-    .page-wrapper .menuSection h2 { font-size: 70px; }
+    .page-wrapper .aboutContent h2 { font-size: 55px; }
+    .page-wrapper .menuSection h2 { font-size: 50px;     margin-bottom: 25px;}
     .page-wrapper .footerContent h2 { font-size: 70px; }
     .page-wrapper p { font-size: 22px; }
     .page-wrapper .chowmeinImgBg p { font-size: 200px; }
-    .page-wrapper .aboutContent p { font-size: 26px; }
+    .page-wrapper .aboutContent p { font-size: 24px; }
     .page-wrapper .orderBtn { font-size: 24px; }
     .page-wrapper .chowmeinImg { width: 460px; }
-    .page-wrapper .owl-carousel .galleryImg { height: 450px; }
+    .page-wrapper .owl-carousel .galleryImg { height: 380px;    border-radius: 15px; }
     .section-title { font-size: 70px; }
     .step-card { width: 300px; height: 300px; }
     .step-card h3 { font-size: 1.6rem; }
     .step-card p { font-size: 1rem; }
     .icon-circle { width: 110px; height: 110px; }
     .icon-circle svg { width: 60px; height: 60px; }
-    .page-wrapper .decorationImg { width: 220px; }
+    .page-wrapper .decorationImg {         width: 180px;
+        top: -34%; }
+    .page-wrapper .headerRightContent {
+            max-width: 82%;
+    }
+    .page-wrapper .cartParent {    width: 50px;
+    height: 50px;     padding: 12px;}
+    .page-wrapper .hoverContent p { font-size: 30px;}
+    .page-wrapper .caroseul-wrapper {
+            border-radius: 15px;
+    padding: 25px 15px;
+    }
+    .page-wrapper .menuSection {
+            padding-bottom: 75px;
+    }
+    .page-wrapper .owl-carousel {
+    margin-left: 5%;
+}
 }
 
 @media (max-width:1199px) {
-    .page-wrapper h1 { font-size: 50px; }
-    .page-wrapper h1 span { font-size: 100px; }
+    .page-wrapper .aboutSection {
+        margin-top: 220px;
+    }
+    .page-wrapper h1 { font-size: 45px; }
+    .page-wrapper h1 span { font-size: 90px; }
     .page-wrapper .aboutContent h2 { font-size: 60px; }
-    .page-wrapper .menuSection h2 { font-size: 60px; }
+    .page-wrapper .menuSection h2 { font-size: 45px; }
     .page-wrapper .footerContent h2 { font-size: 60px; }
     .page-wrapper p { font-size: 20px; }
     .page-wrapper .chowmeinImgBg p { font-size: 160px; }
     .page-wrapper .aboutContent p { font-size: 22px; }
     .page-wrapper .orderBtn { font-size: 22px; }
-    .page-wrapper .chowmeinImg { width: 390px; }
-    .page-wrapper .owl-carousel .galleryImg { height: 400px; }
+    .page-wrapper .chowmeinImg { width: 375px;    top: 25%; }
+    .page-wrapper .chowmeinImgBg {
+            margin-top: 75px;
+    }
+        .page-wrapper .hoverContent p {
+        font-size: 28px;
+    }
+        .page-wrapper .owl-carousel {
+        margin-left: 3%;
+    }
+        .page-wrapper .cartParent {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+    .page-wrapper .owl-carousel .galleryImg { height: 320px; }
     .section-title { font-size: 60px; }
     .step-card { width: 270px; height: 270px; }
     .step-card h3 { font-size: 1.4rem; }
@@ -570,36 +615,83 @@
 @media (max-width:991px) {
     .page-wrapper h1 { font-size: 42px; }
     .page-wrapper h1 span { font-size: 80px; }
-    .page-wrapper .aboutContent h2 { font-size: 50px; }
-    .page-wrapper .menuSection h2 { font-size: 50px; }
+    .page-wrapper .aboutContent h2 { font-size: 40px; }
+    .page-wrapper .menuSection h2 { font-size: 40px; }
     .page-wrapper .footerContent h2 { font-size: 50px; }
-    .page-wrapper p { font-size: 18px; }
+    .page-wrapper p { font-size: 16px; }
     .page-wrapper .chowmeinImgBg p { font-size: 120px; }
-    .page-wrapper .aboutContent p { font-size: 18px; }
-    .page-wrapper .orderBtn { font-size: 20px; }
-    .page-wrapper .chowmeinImg { width: 320px; }
-    .page-wrapper .owl-carousel .galleryImg { height: 350px; }
+    .page-wrapper .aboutContent p { font-size: 16px; }
+    .page-wrapper .orderBtn {         font-size: 18px;
+        padding: 8px 15px; }
+    .page-wrapper .chowmeinImg {         width: 325px;
+        left: 25%; }
+            .page-wrapper .headerRightContent {
+        max-width: 100%;
+    }
+    .page-wrapper .aboutSection {
+        margin-top: 195px;
+    }
+    .page-wrapper .aboutRight::after, .page-wrapper .aboutRight::before {
+            border-radius: 300px 20px 20px 20px;
+    }
+    .page-wrapper .owl-carousel .galleryImg { height: 265px; border-radius: 10px;}
     .section-title { font-size: 50px; }
     .step-card { width: 230px; height: 230px; }
     .step-card h3 { font-size: 1.2rem; }
     .step-card p { font-size: 0.88rem; }
     .icon-circle { width: 80px; height: 80px; }
     .icon-circle svg { width: 44px; height: 44px; }
-    .page-wrapper .decorationImg { width: 160px; }
+    .page-wrapper .decorationImg {         width: 130px;
+        top: -32%; }
+            .page-wrapper .hoverContent p {
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+        .page-wrapper .owl-carousel {
+        margin-left: 0%;
+        width: 95%;
+        margin: auto;
+    }
+        .page-wrapper .caroseul-wrapper {
+        border-radius: 10px;
+        padding: 10px 10px 30px;
+    }
 }
 
 @media (max-width:767px) {
-    .page-wrapper h1 { font-size: 34px; }
+        .page-wrapper .aboutSection {
+        margin-top: 175px;
+            padding: 0px 0 25px;
+    }
+        .page-wrapper .aboutRight::after, .page-wrapper .aboutRight::before {
+        border-radius: 200px 20px 20px 20px;
+    }
+    .page-wrapper .caroseul-wrapper {
+                max-width: 300px;
+        margin: auto;
+    }
+    .page-wrapper h1 { font-size: 30px; }
     .page-wrapper h1 span { font-size: 60px; }
-    .page-wrapper .aboutContent h2 { font-size: 42px; }
-    .page-wrapper .menuSection h2 { font-size: 42px; }
+    .page-wrapper .aboutContent h2 { font-size: 28px; }
+    .page-wrapper .menuSection h2 {         font-size: 35px;
+        margin-bottom: 10px; }
+            .page-wrapper .menuSection {
+        padding-bottom: 60px;
+    }
     .page-wrapper .footerContent h2 { font-size: 42px; }
-    .page-wrapper p { font-size: 16px; }
-    .page-wrapper .chowmeinImgBg p { font-size: 80px; }
-    .page-wrapper .aboutContent p { font-size: 16px; }
-    .page-wrapper .orderBtn { font-size: 18px; }
-    .page-wrapper .chowmeinImg { width: 260px; }
-    .page-wrapper .owl-carousel .galleryImg { height: 300px; }
+    .page-wrapper p {         font-size: 15px;
+        letter-spacing: 1px;
+        margin-bottom: 15px; }
+    .page-wrapper .chowmeinImgBg p { font-size: 88px; }
+    .page-wrapper .aboutContent p { font-size: 14px; }
+        .page-wrapper .chowmeinImgBg {
+        margin-top: 60px;
+    }
+    .page-wrapper .orderBtn { font-size: 16px;         padding: 6px 15px; }
+    .page-wrapper .chowmeinImg {                width: 260px;
+        left: 22%;
+        top: 35%;}
+    .page-wrapper .owl-carousel .galleryImg { height: 250px; }
     .section-title { font-size: 38px; }
     .step-card { width: 200px; height: 200px; }
     .step-card h3 { font-size: 1rem; }
@@ -610,24 +702,69 @@
 }
 
 @media (max-width:575px) {
-    .page-wrapper h1 { font-size: 26px; }
+    .page-wrapper h1 { font-size: 30px; text-align: center; }
     .page-wrapper h1 span { font-size: 44px; }
+    .page-wrapper .headerRightContent {
+        text-align: center;
+    }
+        .page-wrapper .caroseul-wrapper {
+        max-width: 350px; 
+    }
+    .page-wrapper .aboutSection {
+                margin-top: 0px;
+        padding-top: 25px;
+    }
+    .page-wrapper .headerSection {
+            padding: 50px 0;
+    }
     .page-wrapper .aboutContent h2 { font-size: 32px; }
     .page-wrapper .menuSection h2 { font-size: 32px; }
     .page-wrapper .footerContent h2 { font-size: 32px; }
-    .page-wrapper p { font-size: 14px; }
-    .page-wrapper .chowmeinImgBg p { font-size: 52px; }
+    .page-wrapper p { font-size: 14px; text-align: center; }
+    .page-wrapper .chowmeinImgBg p { font-size: 52px; display: none;}
     .page-wrapper .aboutContent p { font-size: 14px; }
     .page-wrapper .orderBtn { font-size: 16px; }
-    .page-wrapper .chowmeinImg { width: 200px; }
-    .page-wrapper .owl-carousel .galleryImg { height: 240px; }
+    .page-wrapper .chowmeinImg {         width: 100%;
+        max-width: 450px;
+        position: relative;
+        left: 18%;
+        right: 0;
+        transform: unset;
+        margin: auto;
+        display: flex;
+        margin-top: -120px; }
+    .page-wrapper .owl-carousel .galleryImg { height: 300px; }
     .section-title { font-size: 28px; }
     .step-card { width: 160px; height: 160px; }
     .step-card h3 { font-size: 0.85rem; }
     .step-card p { font-size: 0.72rem; }
     .icon-circle { width: 55px; height: 55px; }
     .icon-circle svg { width: 28px; height: 28px; }
-    .page-wrapper .decorationImg { width: 100px; }
+    .page-wrapper .decorationImg {         width: 75px;
+        top: -25px; }
+        .page-wrapper .leftImg {
+    width: 95%;
+    margin: 20px auto 0;
+    height: 100%;
+}
+.page-wrapper .leftImg img {
+    border-radius: 25px;
+    width: 98%;
+    margin: auto; 
+}
+.page-wrapper .aboutRight {
+        margin: 0px 20px;
+}
+.page-wrapper .aboutContent {
+    text-align: center;
+        padding: 30px 0;
+}
+    .page-wrapper .aboutRight::after, .page-wrapper .aboutRight::before {
+        border-radius: 25px;
+            top: 0%; 
+    width: 100%;
+    height: 100%;
+    }
 }
 
 </style>
@@ -647,23 +784,25 @@
 <section class="headerSection">
   <div class="container">
    <div class="row align-items-center">
-        <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="headerContent">
                 <h1>
-                    THE EXPERIENCE TRUE TASTE OF 
+                    EXPERIENCE THE <br> TRUE TASTE OF <br>
                     <span>
-                        CHINA!
+                        CHINA! 
                     </span>
                 </h1> 
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12">
-            <p>
-                Enjoy the taste of authentic Chinese cuisine from the comfort of your home with (TAKEAWAY NAME} in (TAKEAWAY TOWN}
-            </p>
-            <a href="/order-now" class="orderBtn">
-              Order now
-            </a>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="headerRightContent">
+                <p>
+                    Enjoy the taste of authentic Chinese cuisine from the comfort of your home with (TAKEAWAY NAME} in (TAKEAWAY TOWN}
+                </p>
+                <a href="/order-now" class="orderBtn">
+                  Order now
+                </a>
+            </div>
         </div>
    </div>
    <div class="chowmeinImgBg">
@@ -679,12 +818,12 @@
   <div class="container position-relative">
     <img class="img-fluid decorationImg" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpbhEjAR.png" alt="">
     <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-lg-6 col-md-6 col-sm-5 order-sm-1 order-2">
         <div class="leftImg">
           <img class="img-fluid" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229php3JKj74.jpg" alt="">
         </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 aboutRight">
+      <div class="col-lg-6 col-md-6 col-sm-7 aboutRight order-sm-2 order-1">
         <div class="aboutContent">
           <h2>
             About Us
@@ -712,10 +851,10 @@
                     <div class="caroseul-wrapper carousel-wrapper-3">
                         <div class="carousel-dish-wrapper">
                             <a href="/order-now">
-                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
+                                <img loading="lazy" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989244phpjyaxqL.jpg" alt="TEMP-1069-Kabana - 879533  GB Curry Dishes" class="img-fluid galleryImg">
                                                             <div class="hoverContent">
                                                                   <p>
-                                        Pilau Rice
+                                        Curry Dishes
                                     </p>
                                     <div class="cartParent">
                                         <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
@@ -730,10 +869,10 @@
                     <div class="caroseul-wrapper carousel-wrapper-3">
                         <div class="carousel-dish-wrapper">
                             <a href="/order-now">
-                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
+                                <img loading="lazy" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989244phpzdCsAT.jpg" alt="TEMP-1069-Kabana - 879533  GB Duck" class="img-fluid galleryImg">
                                                             <div class="hoverContent">
                                                                   <p>
-                                        Pilau Rice
+                                        Duck
                                     </p>
                                     <div class="cartParent">
                                         <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
@@ -748,10 +887,10 @@
                     <div class="caroseul-wrapper carousel-wrapper-3">
                         <div class="carousel-dish-wrapper">
                             <a href="/order-now">
-                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
+                                <img loading="lazy" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpTsUdB0.jpg" alt="TEMP-1069-Kabana - 879533  GB Sweet & Sour" class="img-fluid galleryImg">
                                                             <div class="hoverContent">
                                                                   <p>
-                                        Pilau Rice
+                                        Sweet & Sour
                                     </p>
                                     <div class="cartParent">
                                         <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
@@ -766,10 +905,10 @@
                     <div class="caroseul-wrapper carousel-wrapper-3">
                         <div class="carousel-dish-wrapper">
                             <a href="/order-now">
-                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
+                                <img loading="lazy" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpTF1J5V.jpg" alt="TEMP-1069-Kabana - 879533  GB Fried Rice" class="img-fluid galleryImg">
                                                             <div class="hoverContent">
                                                                   <p>
-                                        Pilau Rice
+                                        Fried Rice
                                     </p>
                                     <div class="cartParent">
                                         <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
@@ -779,43 +918,7 @@
                             </a>
                         </div>
                     </div>
-                </div> 
-                <div class="item">
-                    <div class="caroseul-wrapper carousel-wrapper-3">
-                        <div class="carousel-dish-wrapper">
-                            <a href="/order-now">
-                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
-                                                            <div class="hoverContent">
-                                                                  <p>
-                                        Pilau Rice
-                                    </p>
-                                    <div class="cartParent">
-                                        <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
-                                    </div>
-                                  
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div> 
-                <div class="item">
-                    <div class="caroseul-wrapper carousel-wrapper-3">
-                        <div class="carousel-dish-wrapper">
-                            <a href="/order-now">
-                                <img loading="lazy" src="https://assets.touch2success.com/static/c5da8c3b32b8cc9fc8d76de87e85ec0a/img/1715345086phpbZxwv8.png" alt="TEMP-1069-Kabana - 879533  GB Pilau Rice" class="img-fluid galleryImg">
-                                                            <div class="hoverContent">
-                                                                  <p>
-                                        Pilau Rice
-                                    </p>
-                                    <div class="cartParent">
-                                        <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1771616354php1Wf0Ni.png" class="cartImg img-fluid" alt="TEMP-1069-Kabana - 879533  GB Cart">
-                                    </div>
-                                  
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div> 
+                </div>  
                 
                  
 
