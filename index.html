@@ -43,6 +43,8 @@
     overflow-x: hidden; 
     scroll-behavior: smooth; 
     background-color: #1c1c1c;
+      --c1: #202020;
+  --c2: #c19300; 
     } 
     
    .page-wrapper p {
@@ -126,7 +128,7 @@
     }
     
    .page-wrapper .headerSection::after {
-    background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png');
+    background-image: url('https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png');
     content: '';
     position: absolute;
     top: 0;
@@ -136,7 +138,7 @@
     z-index: -1;
    }
     .page-wrapper .chowmeinImgBg {
-     background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php75g39d.jpg');
+     background-image: url('https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php75g39d.jpg');
      /* padding:125px 50px; */
      background-size: cover;
      background-position: center;
@@ -164,6 +166,47 @@
     letter-spacing: 1px;
     display: inline-block;
     }
+.orderBtn {
+  
+  border: 3px solid var(--c2); 
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: 300ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.orderBtn > .text { 
+  color: var(--c2);
+  position: relative;
+  z-index: 1;
+  transition: color 700ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.orderBtn::after {
+  content: "";
+  width: 0;
+  height: calc(300% + 1em);
+
+  position: absolute;
+  inset: 50%;
+  transform: translate(-50%, -50%) rotate(30deg);
+
+  background-color: var(--c2);
+  transition: width 1000ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.orderBtn:hover > .text {
+  color: var(--c1);
+}
+
+.orderBtn:hover::after {
+  width: calc(120% + 1em);
+}
+
+.orderBtn:active {
+  transform: scale(0.98);
+  filter: brightness(0.9);
+} 
     .page-wrapper .chowmeinImgBg p {
           font-size: 245px;
     text-transform: uppercase;
@@ -204,17 +247,7 @@
         position: relative;
     padding: 15px;
     text-align: right;
-    }
-     /* .page-wrapper .aboutContent::after {
-    background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png');
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-   } */
+    } 
    .page-wrapper .aboutContent h2, .page-wrapper .aboutContent p, .page-wrapper .aboutContent .orderBtn {
     position: relative;
     z-index: 1;
@@ -231,7 +264,7 @@
     border-radius: 450px 20px 20px 20px;
      }
      .page-wrapper .aboutRight::before {
-      background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png');
+      background-image: url('https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png');
     content: '';
     position: absolute;
     top: -40%;
@@ -272,6 +305,19 @@
         background: #000;
     border-radius: 20px;
     padding: 30px;
+    transition: all 0.2s linear;
+}
+.page-wrapper .caroseul-wrapper:hover {
+    background-color: #ff0b0b;
+    transition: all 0.2s linear;
+}
+.page-wrapper .caroseul-wrapper:hover .hoverContent p{
+        color: var(--c2);
+    transition: all 0.2s linear;
+}
+.page-wrapper .caroseul-wrapper:hover .cartParent{
+        background-color: var(--c2);
+    transition: all 0.2s linear;
 }
 .page-wrapper .cartImg { 
     filter: invert(1);
@@ -286,6 +332,7 @@
     color: #ff0b0b;
     margin-bottom: 0;
     font-family: "DM Serif Display", serif;
+        transition: all 0.2s linear;
 }
 .page-wrapper .cartParent {
         background: #ff0b0b;
@@ -328,11 +375,8 @@
     object-fit: cover; 
     border-radius: 50px;
     object-fit: cover;
-    /* transform: skew(10deg) scale(1.2); */
 }
-.page-wrapper .carousel-dish-wrapper {
-    
-}
+
 .page-wrapper .owl-carousel {
     margin-left: 7%;
 }
@@ -346,10 +390,10 @@
     margin-bottom: 50px;
 }
 
-/* Section Styling */
-        .how-it-works {
-            background-color: #d11212; /* Vibrant red */
-            background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png'); /* Subtle pattern */
+
+.page-wrapper .how-it-works {
+            background-color: #d11212;  
+            background-image: url('https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230php39iOdn.png'); /* Subtle pattern */
             min-height: 100vh;
             position: relative;
             overflow: hidden;
@@ -358,7 +402,7 @@
             padding: 50px 0 !important;
         }
 
-        .section-title { 
+        .page-wrapper .section-title { 
             font-weight: bold;
             font-size: 80px;
             color: #ffffff;
@@ -369,8 +413,7 @@
             z-index: 10;
         }
 
-        /* Image Styling */
-        .image-wrapper {
+         .page-wrapper     .image-wrapper {
             position: absolute;
             top: 55%;
             left: 50%;
@@ -381,7 +424,7 @@
             will-change: width, height, left, transform;
         }
 
-        .image-wrapper img {
+        .page-wrapper .image-wrapper img {
           width: 100%;
     height: 100%;
     object-fit: contain;
@@ -391,8 +434,8 @@
     position: relative;
         }
 
-        /* Cards Container */
-        .cards-container {
+
+        .page-wrapper .cards-container {
             position: absolute;
             top: 55%;
             right: 2vw;
@@ -404,8 +447,8 @@
             z-index: 6;
         }
 
-        /* Individual Card */
-        .step-card {
+
+        .page-wrapper .step-card {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -423,7 +466,7 @@
     box-shadow: 0 0px 10px 5px #ff5722, 0 0 25px rgba(255, 87, 34, 0.9);
         }
 
-        .icon-circle { 
+        .page-wrapper     .icon-circle { 
     border-radius: 50%;
     width: 125px;
     height: 125px;
@@ -434,11 +477,11 @@
     transition: transform 0.3s ease;
         }
 
-        .icon-circle:hover {
+        .page-wrapper .icon-circle:hover {
             transform: scale(1.05);
         }
 
-        .icon-circle svg {
+        .page-wrapper .icon-circle svg {
               width: 70px;
     height: 70px;
     stroke: #000000;
@@ -448,14 +491,14 @@
     stroke-linejoin: round;
         }
 
-        .step-card h3 {
+        .page-wrapper .step-card h3 {
                color: #fff;
     font-size: 20px;
     margin-bottom: 5px;
     font-weight: 500;
         }
 
-        .step-card p {
+        .page-wrapper .step-card p {
                color: #fff;
     font-size: 14px !important;
     line-height: 1.4;
@@ -466,7 +509,7 @@
         
         .page-wrapper .footerSection {
             background-color: #d11212; /* Vibrant red */
-            background-image: url('https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989244phpfZvHgD.jpg'); /* Subtle pattern */
+            background-image: url('https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989244phpfZvHgD.jpg'); /* Subtle pattern */
             padding: 100px 0;
         }
         .page-wrapper .footerSection::after {
@@ -523,11 +566,11 @@
     .page-wrapper .orderBtn { font-size: 24px; }
     .page-wrapper .chowmeinImg { width: 460px; }
     .page-wrapper .owl-carousel .galleryImg { height: 380px;    border-radius: 15px; }
-    .section-title { font-size: 70px; }
-    .step-card { width: 250px;
+    .page-wrapper .section-title { font-size: 70px; }
+    .page-wrapper .step-card { width: 250px;
         height: 250px;
         box-shadow: 0 0px 5px 3px #ff5722, 0 0 20px rgba(255, 87, 34, 0.9); }  
-    .icon-circle {         width: 80px;
+        .page-wrapper .icon-circle {         width: 80px;
         height: 80px;
         margin-bottom: 20px; } 
     .page-wrapper .decorationImg {         width: 180px;
@@ -579,20 +622,20 @@
         padding: 10px;
     }
     .page-wrapper .owl-carousel .galleryImg { height: 320px; }
-    .section-title { font-size: 60px; }
-        .step-card {
+    .page-wrapper .section-title { font-size: 60px; }
+    .page-wrapper     .step-card {
         width: 250px;
         height: 250px;
     } 
-        .icon-circle {
+    .page-wrapper     .icon-circle {
         width: 90px;
         height: 90px; margin-bottom: 15px;
     } 
     .page-wrapper .decorationImg { width: 190px; }
-    .cards-container {
+    .page-wrapper .cards-container {
             width: 80vw;     right: vw;
     }
-    .image-wrapper img {    left: -150px;    transform: scale(1.2);
+    .page-wrapper .image-wrapper img {    left: -150px;    transform: scale(1.2);
     transform-origin: bottom right;}
 }
 
@@ -618,25 +661,25 @@
     .page-wrapper .aboutRight::after, .page-wrapper .aboutRight::before {
             border-radius: 300px 20px 20px 20px;
     }
-        .image-wrapper img {
+    .page-wrapper .image-wrapper img {
         left: 60px;
         transform: scale(1.4);
         transform-origin: bottom right;
     }
     .page-wrapper .owl-carousel .galleryImg { height: 265px; border-radius: 10px;}
-    .section-title { font-size: 40px; top: 3vh; }
-    .step-card {         width: 220px;
+    .page-wrapper .section-title { font-size: 40px; top: 3vh; }
+    .page-wrapper .step-card {         width: 220px;
         height: 220px;
         padding: 20px 10px; } 
-    .icon-circle { width: 80px; height: 80px; }
-    .icon-circle svg { width: 44px; height: 44px; }
+    .page-wrapper .icon-circle { width: 80px; height: 80px; }
+    .page-wrapper .icon-circle svg { width: 44px; height: 44px; }
     .page-wrapper .decorationImg {         width: 130px;
         top: -32%; }
             .page-wrapper .hoverContent p {
         font-size: 22px;
         letter-spacing: 1px;
     }
-        .cards-container {
+    .page-wrapper     .cards-container {
         width: 80vw;
         right: 0vw;
             flex-direction: column;
@@ -687,10 +730,10 @@
         left: 22%;
         top: 35%;}
     .page-wrapper .owl-carousel .galleryImg { height: 250px; }
-    .section-title { font-size: 38px; }  
-    .icon-circle { width: 62px; height: 62px; } 
+    .page-wrapper .section-title { font-size: 38px; }  
+    .page-wrapper .icon-circle { width: 62px; height: 62px; } 
     .page-wrapper .decorationImg { width: 130px; }
-    .image-wrapper img {
+    .page-wrapper .image-wrapper img {
         left: 40px;
     } 
 }
@@ -728,10 +771,10 @@
         display: flex;
         margin-top: -120px; }
     .page-wrapper .owl-carousel .galleryImg { height: 300px; }
-    .section-title { font-size: 25px; top: 2vh; }
-    .step-card { width: 200px; height: 200px; } 
-    .icon-circle { width: 55px; height: 55px; }
-    .icon-circle svg { width: 28px; height: 28px; }
+    .page-wrapper .section-title { font-size: 25px; top: 2vh; }
+    .page-wrapper .step-card { width: 200px; height: 200px; } 
+    .page-wrapper .icon-circle { width: 55px; height: 55px; }
+    .page-wrapper .icon-circle svg { width: 28px; height: 28px; }
     .page-wrapper .decorationImg {         width: 75px;
         top: -25px; }
         .page-wrapper .leftImg {
@@ -739,10 +782,10 @@
     margin: 20px auto 0;
     height: 100%;
 }
-.cards-container {
+.page-wrapper .cards-container {
             width: 100vw;
 }
-.image-wrapper img {
+.page-wrapper .image-wrapper img {
     top: 15px;
     left: 0;
 }
@@ -778,7 +821,9 @@
 
 <div id="page-top-margin"></div>
 
- <div class="page-wrapper">
+
+
+<div class="page-wrapper">
 
 <section class="headerSection">
   <div class="container">
@@ -798,8 +843,9 @@
                 <p>
                     Enjoy the taste of authentic Chinese cuisine from the comfort of your home with (TAKEAWAY NAME} in (TAKEAWAY TOWN}
                 </p>
+               
                 <a href="/order-now" class="orderBtn">
-                  Order now
+                  <span class="text"> Order Now </span>
                 </a>
             </div>
         </div>
@@ -809,17 +855,17 @@
       Chowmein
     </p>
    </div>
-   <img src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpB5juD9.png" class="img-fluid chowmeinImg" alt="">
+   <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpB5juD9.png" class="img-fluid chowmeinImg" alt="Domain545 - Bay Leaf 28.05.2026 Chow Mein">
   </div>
 </section>
 
 <section class="aboutSection">
   <div class="container position-relative">
-    <img class="img-fluid decorationImg" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpbhEjAR.png" alt="">
+    <img loading="lazy" class="img-fluid decorationImg" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpbhEjAR.png" alt="Domain545 - Bay Leaf 28.05.2026 Decoration">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-5 order-sm-1 order-2">
         <div class="leftImg">
-          <img class="img-fluid" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229php3JKj74.jpg" alt="">
+          <img loading="lazy" class="img-fluid" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229php3JKj74.jpg" alt="Domain545 - Bay Leaf 28.05.2026 Noodles">
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-7 aboutRight order-sm-2 order-1">
@@ -828,16 +874,17 @@
             About Us
           </h2>
           <p>
-            Welcome to {TAKEAWAY NAME}, the home of authentic Chinese flavours in {TAKEAWAY TOWN}. Our chefs bring traditional recipes to life with fresh ingredients, bold spices, and timehonoured techniques. Whether you're craving a classic favourite or something new, our menu offers a rich variety of dishes that promise an unforgettable dining experience
+            Welcome to Domain545 - Bay Leaf 28.05.2026, the home of authentic Chinese flavours in LEEDS. Our chefs bring traditional recipes to life with fresh ingredients, bold spices, and timehonoured techniques. Whether you're craving a classic favourite or something new, our menu offers a rich variety of dishes that promise an unforgettable dining experience
           </p>
            <a href="/order-now" class="orderBtn">
-              Order now
-            </a>
+                  <span class="text"> Order Now </span>
+                </a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <section class="menuSection">
       <div class="container-fluid px-0">
@@ -926,19 +973,19 @@
 </section>
 
   <section class="how-it-works">
-    <!-- <img src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989244phpll0sK1.png" class="img-fluid waneImg" alt=""> -->
-        <h2 class="section-title">How it Works?</h2>
+
+    <h2 class="section-title">How it Works?</h2>
         
         <div class="image-wrapper" id="spring-roll">
             <!-- Delicious Asian Spring Rolls image from Pexels -->
-            <img src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230phppXAPGi.png" class="img-fluid" alt="Delicious Spring Rolls">
+            <img loading="lazy" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989230phppXAPGi.png" class="img-fluid" alt="Domain545 - Bay Leaf 28.05.2026 Spring Rolls">
         </div>
         
         <div class="cards-container">
             <!-- Card 1 -->
             <div class="step-card" id="card-1">
                 <div class="icon-circle">
-                  <img class="img-fluid" src="https://public.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpP4624M.png" alt="">
+                  <img loading="lazy" class="img-fluid" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781989229phpP4624M.png" alt="Domain545 - Bay Leaf 28.05.2026 Food">
                 </div>
                 <h3>Pick a Favourite</h3>
                 <p>Browse the menu and choose something delicious</p>
@@ -947,7 +994,7 @@
             <!-- Card 2 -->
             <div class="step-card" id="card-2">
                 <div class="icon-circle">
-                    <img class="img-fluid" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781300150phpDfZUlh.png" alt="">
+                    <img loading="lazy" class="img-fluid" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781300150phpDfZUlh.png" alt="Domain545 - Bay Leaf 28.05.2026 Food">
                 </div>
                 <h3>Secure Checkout</h3>
                 <p>Complete your payment securely and quickly</p>
@@ -956,7 +1003,7 @@
             <!-- Card 3 -->
             <div class="step-card" id="card-3">
                 <div class="icon-circle">
-                   <img class="img-fluid" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781300150phpMnhViY.png" alt="">
+                   <img loading="lazy" class="img-fluid" src="https://assets.touch2success.com/static/b1cb275a788a9c10f60a93682b1e7039/img/1781300150phpMnhViY.png" alt="Domain545 - Bay Leaf 28.05.2026 Food">
                 </div>
                 <h3>Fast Delivery</h3>
                 <p>Get your food delivered hot and fresh</p>
@@ -968,13 +1015,13 @@
         <div class="container">
             <div class="footerContent text-center">
                 <h2>
-                    Fresh Ingredients, Fiery Woks & Unforgettable Taste
+                    Fresh Ingredients, Fiery Woks &amp; Unforgettable Taste
                 </h2>
                 <p>
                     From sizzling stir-fries to comforting bowls of {dish 1}, every dish is crafted with care to bring you the perfect balance of taste and texture. Dine with us and experience a true taste of China.
                 </p>
                 <a href="/order-now" class="orderBtn">
-                    Order now
+                  <span class="text"> Order Now </span>
                 </a>
             </div>
         </div>
@@ -1043,9 +1090,7 @@
   });
 
   setActiveCard();
-
-  // On hover: remove active from 2nd card
-  // On mouse leave: restore active to 2nd card
+ 
   $(document).on('mouseenter', '.owl-item .slider-wrapper', function () {
     $('.owl-carousel .owl-item .slider-wrapper').removeClass('active');
   });
@@ -1061,31 +1106,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <script>
-        // Register GSAP ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
+         gsap.registerPlugin(ScrollTrigger);
 
-        // Create the timeline
-        const tl = gsap.timeline({
+         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".how-it-works",
                 start: "top top",
-                end: "+=2500", // Pin the section for 2500px of scroll
+                end: "+=2500",  
                 pin: true,
-                scrub: 1, // Smooth scrubbing
+                scrub: 1,  
                 anticipatePin: 1
             }
         });
 
-        // Responsive variables for GSAP
-        let isMobile = window.innerWidth <= 575;
+         let isMobile = window.innerWidth <= 575;
         
         let targetWidth = isMobile ? "80vw" : "30vw";
         let targetHeight = isMobile ? "30vh" : "50vh";
         let targetLeft = isMobile ? "40%" : "17%";
         let targetTop = isMobile ? "25%" : "55%";
 
-        // Phase 1: Shrink and move the image
-        tl.to("#spring-roll", {
+         tl.to("#spring-roll", {
             width: targetWidth,
             height: targetHeight,
             left: targetLeft,
@@ -1094,16 +1135,13 @@
             ease: "power2.inOut"
         });
 
-        // Phase 2: Make cards container visible
-        tl.set(".cards-container", { visibility: "visible" }, 1);
+         tl.set(".cards-container", { visibility: "visible" }, 1);
 
-        // Phase 3: Animate cards in one by one while scrolling
-        tl.to("#card-1", { opacity: 1, x: 0, duration: 1, ease: "power2.out" }, 1.5);
+         tl.to("#card-1", { opacity: 1, x: 0, duration: 1, ease: "power2.out" }, 1.5);
         tl.to("#card-2", { opacity: 1, x: 0, duration: 1, ease: "power2.out" }, 2.5);
         tl.to("#card-3", { opacity: 1, x: 0, duration: 1, ease: "power2.out" }, 3.5);
 
-        // Handle window resize to update animation targets
-        window.addEventListener('resize', () => {
+         window.addEventListener('resize', () => {
             ScrollTrigger.refresh();
         });
     </script>
